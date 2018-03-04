@@ -1,0 +1,18 @@
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\Diplom v.0.36.exe.config
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\Diplom v.0.36.exe
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\Diplom v.0.36.pdb
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom v.0.36.csprojResolveAssemblyReference.cache
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Form1.resources
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Load.resources
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Properties.Resources.resources
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom v.0.36.csproj.GenerateResource.Cache
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom v.0.36.exe
+c:\users\karapas\documents\visual studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom v.0.36.pdb
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.Data.dll
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.dll
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.Graphviz.dll
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.Serialization.dll
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.xml
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.Data.xml
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.Graphviz.xml
+C:\Users\Karapas\Documents\Visual Studio 2013\Projects\Diplom v.0.36\Diplom v.0.36\bin\Debug\QuickGraph.Serialization.xml
