@@ -18,9 +18,9 @@ using System.Data.OleDb;
 
 namespace Diplom_v._0._36
 {
-    public partial class Form1 : Form
+    public partial class Main_form : Form
     {
-        public Form1()
+        public Main_form()
         {
             InitializeComponent();
 
