@@ -1,6 +1,6 @@
 ﻿namespace Diplom_v._0._36
 {
-    partial class Teachers_form
+    partial class Subjects_form
     {
         /// <summary>
         /// Required designer variable.
@@ -36,34 +36,30 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.diplom2DataSet = new Diplom_v._0._36.Diplom2DataSet();
-            this.teachersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.teachersTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.TeachersTableAdapter();
+            this.subjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.subjectsTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.SubjectsTableAdapter();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.dataGridView1.DataSource = this.teachersBindingSource;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dataGridView1.DataSource = this.subjectsBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(431, 141);
@@ -76,9 +72,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 172);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Ф.И.О. преподавателя";
+            this.label1.Text = "Наименование предмета";
             // 
             // textBox1
             // 
@@ -126,30 +122,30 @@
             this.diplom2DataSet.DataSetName = "Diplom2DataSet";
             this.diplom2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // teachersBindingSource
+            // subjectsBindingSource
             // 
-            this.teachersBindingSource.DataMember = "Teachers";
-            this.teachersBindingSource.DataSource = this.diplom2DataSet;
+            this.subjectsBindingSource.DataMember = "Subjects";
+            this.subjectsBindingSource.DataSource = this.diplom2DataSet;
             // 
-            // teachersTableAdapter
+            // subjectsTableAdapter
             // 
-            this.teachersTableAdapter.ClearBeforeFill = true;
+            this.subjectsTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Key";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Key";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Key";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Key";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Subject";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Subject";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "FIO";
-            this.dataGridViewTextBoxColumn3.HeaderText = "FIO";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // Teachers_form
+            // Subjects_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -161,12 +157,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.MinimumSize = new System.Drawing.Size(471, 281);
-            this.Name = "Teachers_form";
-            this.Text = "Преподаватели";
-            this.Load += new System.EventHandler(this.Teachers_Load);
+            this.Name = "Subjects_form";
+            this.Text = "Предметы";
+            this.Load += new System.EventHandler(this.Subjects_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,13 +177,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn teacherFIODataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fIODataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subjectDataGridViewTextBoxColumn;
         private Diplom2DataSet diplom2DataSet;
-        private System.Windows.Forms.BindingSource teachersBindingSource;
-        private Diplom2DataSetTableAdapters.TeachersTableAdapter teachersTableAdapter;
+        private System.Windows.Forms.BindingSource subjectsBindingSource;
+        private Diplom2DataSetTableAdapters.SubjectsTableAdapter subjectsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }

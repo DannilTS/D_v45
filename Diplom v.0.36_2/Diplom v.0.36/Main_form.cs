@@ -42,14 +42,13 @@ namespace Diplom_v._0._36
         public int kol;
         private void button1_Click(object sender, EventArgs e) //открытие формы "Нагрузка"
         {
-            Load LD = new Load();
+            Load_form LD = new Load_form();
             LD.Owner = this;
             LD.Show();
         }
         private void button2_Click(object sender, EventArgs e)
         {
             int CountI = 0, CountJ = 0;                             //переменные для формирования матрицы смежности
-            this.loadTableAdapter1.Fill(this.diplom2DataSet1.Load); 
             var g = new AdjacencyGraph<uzel, Edge<uzel>>();
             for (int i = 0; i < diplom2DataSet1.Load.Count; i++)
             {

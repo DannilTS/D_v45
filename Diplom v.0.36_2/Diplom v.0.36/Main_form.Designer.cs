@@ -33,7 +33,6 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
-            this.loadTableAdapter1 = new Diplom_v._0._36.Diplom2DataSetTableAdapters.LoadTableAdapter();
             this.diplom2DataSet1 = new Diplom_v._0._36.Diplom2DataSet();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet1)).BeginInit();
@@ -72,7 +71,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 58);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 48);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(618, 265);
             this.dataGridView1.TabIndex = 3;
@@ -86,10 +85,6 @@
             this.button2.Text = "Составить расписание";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // loadTableAdapter1
-            // 
-            this.loadTableAdapter1.ClearBeforeFill = true;
             // 
             // diplom2DataSet1
             // 
@@ -122,7 +117,6 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
-        private Diplom2DataSetTableAdapters.LoadTableAdapter loadTableAdapter1;
         private Diplom2DataSet diplom2DataSet1;
     }
 }

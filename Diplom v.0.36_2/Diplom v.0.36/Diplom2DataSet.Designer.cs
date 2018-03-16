@@ -24,15 +24,13 @@ namespace Diplom_v._0._36 {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class Diplom2DataSet : global::System.Data.DataSet {
         
-        private GroupsDataTable tableGroups;
+        private AuditDataTable tableAudit;
         
         private LoadDataTable tableLoad;
         
         private SubjectsDataTable tableSubjects;
         
         private TeachersDataTable tableTeachers;
-        
-        private global::System.Data.DataRelation relationGroupsLoad;
         
         private global::System.Data.DataRelation relationSubjectsLoad;
         
@@ -66,8 +64,8 @@ namespace Diplom_v._0._36 {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Groups"] != null)) {
-                    base.Tables.Add(new GroupsDataTable(ds.Tables["Groups"]));
+                if ((ds.Tables["Audit"] != null)) {
+                    base.Tables.Add(new AuditDataTable(ds.Tables["Audit"]));
                 }
                 if ((ds.Tables["Load"] != null)) {
                     base.Tables.Add(new LoadDataTable(ds.Tables["Load"]));
@@ -100,9 +98,9 @@ namespace Diplom_v._0._36 {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public GroupsDataTable Groups {
+        public AuditDataTable Audit {
             get {
-                return this.tableGroups;
+                return this.tableAudit;
             }
         }
         
@@ -203,8 +201,8 @@ namespace Diplom_v._0._36 {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Groups"] != null)) {
-                    base.Tables.Add(new GroupsDataTable(ds.Tables["Groups"]));
+                if ((ds.Tables["Audit"] != null)) {
+                    base.Tables.Add(new AuditDataTable(ds.Tables["Audit"]));
                 }
                 if ((ds.Tables["Load"] != null)) {
                     base.Tables.Add(new LoadDataTable(ds.Tables["Load"]));
@@ -248,10 +246,10 @@ namespace Diplom_v._0._36 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableGroups = ((GroupsDataTable)(base.Tables["Groups"]));
+            this.tableAudit = ((AuditDataTable)(base.Tables["Audit"]));
             if ((initTable == true)) {
-                if ((this.tableGroups != null)) {
-                    this.tableGroups.InitVars();
+                if ((this.tableAudit != null)) {
+                    this.tableAudit.InitVars();
                 }
             }
             this.tableLoad = ((LoadDataTable)(base.Tables["Load"]));
@@ -272,7 +270,6 @@ namespace Diplom_v._0._36 {
                     this.tableTeachers.InitVars();
                 }
             }
-            this.relationGroupsLoad = this.Relations["GroupsLoad"];
             this.relationSubjectsLoad = this.Relations["SubjectsLoad"];
             this.relationTeachersLoad = this.Relations["TeachersLoad"];
         }
@@ -285,18 +282,14 @@ namespace Diplom_v._0._36 {
             this.Namespace = "http://tempuri.org/Diplom2DataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableGroups = new GroupsDataTable();
-            base.Tables.Add(this.tableGroups);
+            this.tableAudit = new AuditDataTable();
+            base.Tables.Add(this.tableAudit);
             this.tableLoad = new LoadDataTable();
             base.Tables.Add(this.tableLoad);
             this.tableSubjects = new SubjectsDataTable();
             base.Tables.Add(this.tableSubjects);
             this.tableTeachers = new TeachersDataTable();
             base.Tables.Add(this.tableTeachers);
-            this.relationGroupsLoad = new global::System.Data.DataRelation("GroupsLoad", new global::System.Data.DataColumn[] {
-                        this.tableGroups.KeyColumn}, new global::System.Data.DataColumn[] {
-                        this.tableLoad.GroupsColumn}, false);
-            this.Relations.Add(this.relationGroupsLoad);
             this.relationSubjectsLoad = new global::System.Data.DataRelation("SubjectsLoad", new global::System.Data.DataColumn[] {
                         this.tableSubjects.KeyColumn}, new global::System.Data.DataColumn[] {
                         this.tableLoad.SubjectColumn}, false);
@@ -309,7 +302,7 @@ namespace Diplom_v._0._36 {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeGroups() {
+        private bool ShouldSerializeAudit() {
             return false;
         }
         
@@ -387,7 +380,7 @@ namespace Diplom_v._0._36 {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void GroupsRowChangeEventHandler(object sender, GroupsRowChangeEvent e);
+        public delegate void AuditRowChangeEventHandler(object sender, AuditRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void LoadRowChangeEventHandler(object sender, LoadRowChangeEvent e);
@@ -403,16 +396,22 @@ namespace Diplom_v._0._36 {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class GroupsDataTable : global::System.Data.TypedTableBase<GroupsRow> {
+        public partial class AuditDataTable : global::System.Data.TypedTableBase<AuditRow> {
             
             private global::System.Data.DataColumn columnKey;
             
-            private global::System.Data.DataColumn columnGroup;
+            private global::System.Data.DataColumn columnNomer;
+            
+            private global::System.Data.DataColumn columnLecture;
+            
+            private global::System.Data.DataColumn columnPractice;
+            
+            private global::System.Data.DataColumn columnCorps;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsDataTable() {
-                this.TableName = "Groups";
+            public AuditDataTable() {
+                this.TableName = "Audit";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -420,7 +419,7 @@ namespace Diplom_v._0._36 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal GroupsDataTable(global::System.Data.DataTable table) {
+            internal AuditDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -437,7 +436,7 @@ namespace Diplom_v._0._36 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected GroupsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected AuditDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -452,9 +451,33 @@ namespace Diplom_v._0._36 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn GroupColumn {
+            public global::System.Data.DataColumn NomerColumn {
                 get {
-                    return this.columnGroup;
+                    return this.columnNomer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LectureColumn {
+                get {
+                    return this.columnLecture;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PracticeColumn {
+                get {
+                    return this.columnPractice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CorpsColumn {
+                get {
+                    return this.columnCorps;
                 }
             }
             
@@ -469,53 +492,56 @@ namespace Diplom_v._0._36 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsRow this[int index] {
+            public AuditRow this[int index] {
                 get {
-                    return ((GroupsRow)(this.Rows[index]));
+                    return ((AuditRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GroupsRowChangeEventHandler GroupsRowChanging;
+            public event AuditRowChangeEventHandler AuditRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GroupsRowChangeEventHandler GroupsRowChanged;
+            public event AuditRowChangeEventHandler AuditRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GroupsRowChangeEventHandler GroupsRowDeleting;
+            public event AuditRowChangeEventHandler AuditRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GroupsRowChangeEventHandler GroupsRowDeleted;
+            public event AuditRowChangeEventHandler AuditRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddGroupsRow(GroupsRow row) {
+            public void AddAuditRow(AuditRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsRow AddGroupsRow(string Group) {
-                GroupsRow rowGroupsRow = ((GroupsRow)(this.NewRow()));
+            public AuditRow AddAuditRow(int Nomer, bool Lecture, bool Practice, string Corps) {
+                AuditRow rowAuditRow = ((AuditRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Group};
-                rowGroupsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowGroupsRow);
-                return rowGroupsRow;
+                        Nomer,
+                        Lecture,
+                        Practice,
+                        Corps};
+                rowAuditRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowAuditRow);
+                return rowAuditRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsRow FindByKey(int Key) {
-                return ((GroupsRow)(this.Rows.Find(new object[] {
+            public AuditRow FindByKey(int Key) {
+                return ((AuditRow)(this.Rows.Find(new object[] {
                             Key})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                GroupsDataTable cln = ((GroupsDataTable)(base.Clone()));
+                AuditDataTable cln = ((AuditDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -523,14 +549,17 @@ namespace Diplom_v._0._36 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new GroupsDataTable();
+                return new AuditDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnKey = base.Columns["Key"];
-                this.columnGroup = base.Columns["Group"];
+                this.columnNomer = base.Columns["Nomer"];
+                this.columnLecture = base.Columns["Lecture"];
+                this.columnPractice = base.Columns["Practice"];
+                this.columnCorps = base.Columns["Corps"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -538,8 +567,14 @@ namespace Diplom_v._0._36 {
             private void InitClass() {
                 this.columnKey = new global::System.Data.DataColumn("Key", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKey);
-                this.columnGroup = new global::System.Data.DataColumn("Group", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGroup);
+                this.columnNomer = new global::System.Data.DataColumn("Nomer", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNomer);
+                this.columnLecture = new global::System.Data.DataColumn("Lecture", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLecture);
+                this.columnPractice = new global::System.Data.DataColumn("Practice", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPractice);
+                this.columnCorps = new global::System.Data.DataColumn("Corps", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCorps);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnKey}, true));
                 this.columnKey.AutoIncrement = true;
@@ -547,33 +582,33 @@ namespace Diplom_v._0._36 {
                 this.columnKey.AutoIncrementStep = -1;
                 this.columnKey.AllowDBNull = false;
                 this.columnKey.Unique = true;
-                this.columnGroup.MaxLength = 255;
+                this.columnCorps.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsRow NewGroupsRow() {
-                return ((GroupsRow)(this.NewRow()));
+            public AuditRow NewAuditRow() {
+                return ((AuditRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new GroupsRow(builder);
+                return new AuditRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(GroupsRow);
+                return typeof(AuditRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.GroupsRowChanged != null)) {
-                    this.GroupsRowChanged(this, new GroupsRowChangeEvent(((GroupsRow)(e.Row)), e.Action));
+                if ((this.AuditRowChanged != null)) {
+                    this.AuditRowChanged(this, new AuditRowChangeEvent(((AuditRow)(e.Row)), e.Action));
                 }
             }
             
@@ -581,8 +616,8 @@ namespace Diplom_v._0._36 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.GroupsRowChanging != null)) {
-                    this.GroupsRowChanging(this, new GroupsRowChangeEvent(((GroupsRow)(e.Row)), e.Action));
+                if ((this.AuditRowChanging != null)) {
+                    this.AuditRowChanging(this, new AuditRowChangeEvent(((AuditRow)(e.Row)), e.Action));
                 }
             }
             
@@ -590,8 +625,8 @@ namespace Diplom_v._0._36 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.GroupsRowDeleted != null)) {
-                    this.GroupsRowDeleted(this, new GroupsRowChangeEvent(((GroupsRow)(e.Row)), e.Action));
+                if ((this.AuditRowDeleted != null)) {
+                    this.AuditRowDeleted(this, new AuditRowChangeEvent(((AuditRow)(e.Row)), e.Action));
                 }
             }
             
@@ -599,14 +634,14 @@ namespace Diplom_v._0._36 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.GroupsRowDeleting != null)) {
-                    this.GroupsRowDeleting(this, new GroupsRowChangeEvent(((GroupsRow)(e.Row)), e.Action));
+                if ((this.AuditRowDeleting != null)) {
+                    this.AuditRowDeleting(this, new AuditRowChangeEvent(((AuditRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveGroupsRow(GroupsRow row) {
+            public void RemoveAuditRow(AuditRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -633,7 +668,7 @@ namespace Diplom_v._0._36 {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "GroupsDataTable";
+                attribute2.FixedValue = "AuditDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -821,7 +856,7 @@ namespace Diplom_v._0._36 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LoadRow AddLoadRow(TeachersRow parentTeachersRowByTeachersLoad, SubjectsRow parentSubjectsRowBySubjectsLoad, bool Lecture, bool Practice, GroupsRow parentGroupsRowByGroupsLoad, int Hours) {
+            public LoadRow AddLoadRow(TeachersRow parentTeachersRowByTeachersLoad, SubjectsRow parentSubjectsRowBySubjectsLoad, bool Lecture, bool Practice, string Groups, int Hours) {
                 LoadRow rowLoadRow = ((LoadRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -829,16 +864,13 @@ namespace Diplom_v._0._36 {
                         null,
                         Lecture,
                         Practice,
-                        null,
+                        Groups,
                         Hours};
                 if ((parentTeachersRowByTeachersLoad != null)) {
                     columnValuesArray[1] = parentTeachersRowByTeachersLoad[0];
                 }
                 if ((parentSubjectsRowBySubjectsLoad != null)) {
                     columnValuesArray[2] = parentSubjectsRowBySubjectsLoad[0];
-                }
-                if ((parentGroupsRowByGroupsLoad != null)) {
-                    columnValuesArray[5] = parentGroupsRowByGroupsLoad[0];
                 }
                 rowLoadRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLoadRow);
@@ -891,7 +923,7 @@ namespace Diplom_v._0._36 {
                 base.Columns.Add(this.columnLecture);
                 this.columnPractice = new global::System.Data.DataColumn("Practice", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPractice);
-                this.columnGroups = new global::System.Data.DataColumn("Groups", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnGroups = new global::System.Data.DataColumn("Groups", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGroups);
                 this.columnHours = new global::System.Data.DataColumn("Hours", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHours);
@@ -902,6 +934,7 @@ namespace Diplom_v._0._36 {
                 this.columnKey.AutoIncrementStep = -1;
                 this.columnKey.AllowDBNull = false;
                 this.columnKey.Unique = true;
+                this.columnGroups.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1583,65 +1616,138 @@ namespace Diplom_v._0._36 {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class GroupsRow : global::System.Data.DataRow {
+        public partial class AuditRow : global::System.Data.DataRow {
             
-            private GroupsDataTable tableGroups;
+            private AuditDataTable tableAudit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal GroupsRow(global::System.Data.DataRowBuilder rb) : 
+            internal AuditRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableGroups = ((GroupsDataTable)(this.Table));
+                this.tableAudit = ((AuditDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Key {
                 get {
-                    return ((int)(this[this.tableGroups.KeyColumn]));
+                    return ((int)(this[this.tableAudit.KeyColumn]));
                 }
                 set {
-                    this[this.tableGroups.KeyColumn] = value;
+                    this[this.tableAudit.KeyColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Group {
+            public int Nomer {
                 get {
                     try {
-                        return ((string)(this[this.tableGroups.GroupColumn]));
+                        return ((int)(this[this.tableAudit.NomerColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Group\' в таблице \'Groups\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Nomer\' в таблице \'Audit\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGroups.GroupColumn] = value;
+                    this[this.tableAudit.NomerColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsGroupNull() {
-                return this.IsNull(this.tableGroups.GroupColumn);
+            public bool Lecture {
+                get {
+                    try {
+                        return ((bool)(this[this.tableAudit.LectureColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Lecture\' в таблице \'Audit\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAudit.LectureColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetGroupNull() {
-                this[this.tableGroups.GroupColumn] = global::System.Convert.DBNull;
+            public bool Practice {
+                get {
+                    try {
+                        return ((bool)(this[this.tableAudit.PracticeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Practice\' в таблице \'Audit\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAudit.PracticeColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LoadRow[] GetLoadRows() {
-                if ((this.Table.ChildRelations["GroupsLoad"] == null)) {
-                    return new LoadRow[0];
+            public string Corps {
+                get {
+                    try {
+                        return ((string)(this[this.tableAudit.CorpsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Corps\' в таблице \'Audit\' равно DBNull.", e);
+                    }
                 }
-                else {
-                    return ((LoadRow[])(base.GetChildRows(this.Table.ChildRelations["GroupsLoad"])));
+                set {
+                    this[this.tableAudit.CorpsColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNomerNull() {
+                return this.IsNull(this.tableAudit.NomerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNomerNull() {
+                this[this.tableAudit.NomerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLectureNull() {
+                return this.IsNull(this.tableAudit.LectureColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLectureNull() {
+                this[this.tableAudit.LectureColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPracticeNull() {
+                return this.IsNull(this.tableAudit.PracticeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPracticeNull() {
+                this[this.tableAudit.PracticeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCorpsNull() {
+                return this.IsNull(this.tableAudit.CorpsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCorpsNull() {
+                this[this.tableAudit.CorpsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1736,10 +1842,10 @@ namespace Diplom_v._0._36 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Groups {
+            public string Groups {
                 get {
                     try {
-                        return ((int)(this[this.tableLoad.GroupsColumn]));
+                        return ((string)(this[this.tableLoad.GroupsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("Значение для столбца \'Groups\' в таблице \'Load\' равно DBNull.", e);
@@ -1763,17 +1869,6 @@ namespace Diplom_v._0._36 {
                 }
                 set {
                     this[this.tableLoad.HoursColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsRow GroupsRow {
-                get {
-                    return ((GroupsRow)(this.GetParentRow(this.Table.ParentRelations["GroupsLoad"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["GroupsLoad"]);
                 }
             }
             
@@ -2006,22 +2101,22 @@ namespace Diplom_v._0._36 {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class GroupsRowChangeEvent : global::System.EventArgs {
+        public class AuditRowChangeEvent : global::System.EventArgs {
             
-            private GroupsRow eventRow;
+            private AuditRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsRowChangeEvent(GroupsRow row, global::System.Data.DataRowAction action) {
+            public AuditRowChangeEvent(AuditRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupsRow Row {
+            public AuditRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2151,7 +2246,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class GroupsTableAdapter : global::System.ComponentModel.Component {
+    public partial class AuditTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.OleDb.OleDbDataAdapter _adapter;
         
@@ -2165,7 +2260,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public GroupsTableAdapter() {
+        public AuditTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -2262,56 +2357,83 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Groups";
+            tableMapping.DataSetTable = "Audit";
             tableMapping.ColumnMappings.Add("Key", "Key");
-            tableMapping.ColumnMappings.Add("Group", "Group");
+            tableMapping.ColumnMappings.Add("Nomer", "Nomer");
+            tableMapping.ColumnMappings.Add("Lecture", "Lecture");
+            tableMapping.ColumnMappings.Add("Practice", "Practice");
+            tableMapping.ColumnMappings.Add("Corps", "Corps");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Groups` WHERE ((`Key` = ?) AND ((? = 1 AND `Group` IS NULL) OR (`Gro" +
-                "up` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Audit` WHERE ((`Key` = ?) AND ((? = 1 AND `Nomer` IS NULL) OR (`Nome" +
+                "r` = ?)) AND ((? = 1 AND `Lecture` IS NULL) OR (`Lecture` = ?)) AND ((? = 1 AND " +
+                "`Practice` IS NULL) OR (`Practice` = ?)) AND ((? = 1 AND `Corps` IS NULL) OR (`C" +
+                "orps` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Key", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Key", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Group", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Group", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Group", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Group", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Nomer", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nomer", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Nomer", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nomer", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Lecture", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Lecture", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Practice", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Corps", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Corps", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Corps", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Corps", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `Groups` (`Group`) VALUES (?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `Audit` (`Nomer`, `Lecture`, `Practice`, `Corps`) VALUES (?, ?, ?, ?)" +
+                "";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Group", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Group", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Nomer", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nomer", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Lecture", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Corps", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Corps", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `Groups` SET `Group` = ? WHERE ((`Key` = ?) AND ((? = 1 AND `Group` IS NUL" +
-                "L) OR (`Group` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Audit` SET `Nomer` = ?, `Lecture` = ?, `Practice` = ?, `Corps` = ? WHERE ((`Key` = ?) AND ((? = 1 AND `Nomer` IS NULL) OR (`Nomer` = ?)) AND ((? = 1 AND `Lecture` IS NULL) OR (`Lecture` = ?)) AND ((? = 1 AND `Practice` IS NULL) OR (`Practice` = ?)) AND ((? = 1 AND `Corps` IS NULL) OR (`Corps` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Group", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Group", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Nomer", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nomer", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Lecture", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Corps", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Corps", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Key", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Key", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Group", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Group", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Group", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Group", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Nomer", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nomer", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Nomer", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nomer", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Lecture", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Lecture", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Practice", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Corps", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Corps", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Corps", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Corps", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2Connection;
+            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[2];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [Key], [Group] FROM Groups";
+            this._commandCollection[0].CommandText = "SELECT [Key], Nomer, Lecture, Practice, Corps FROM Audit";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        [Key], Nomer, Lecture, Practice, Corps\r\nFROM            Audit";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Diplom2DataSet.GroupsDataTable dataTable) {
+        public virtual int Fill(Diplom2DataSet.AuditDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2324,9 +2446,9 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Diplom2DataSet.GroupsDataTable GetData() {
+        public virtual Diplom2DataSet.AuditDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Diplom2DataSet.GroupsDataTable dataTable = new Diplom2DataSet.GroupsDataTable();
+            Diplom2DataSet.AuditDataTable dataTable = new Diplom2DataSet.AuditDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2334,7 +2456,20 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Diplom2DataSet.GroupsDataTable dataTable) {
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(Diplom2DataSet.AuditDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(Diplom2DataSet.AuditDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -2342,7 +2477,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(Diplom2DataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Groups");
+            return this.Adapter.Update(dataSet, "Audit");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2364,15 +2499,27 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Key, string Original_Group) {
+        public virtual int Delete(int Original_Key, global::System.Nullable<int> Original_Nomer, bool Original_Lecture, bool Original_Practice, string Original_Corps) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Key));
-            if ((Original_Group == null)) {
+            if ((Original_Nomer.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Nomer.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Lecture));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Practice));
+            if ((Original_Corps == null)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Group));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Corps));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2394,12 +2541,20 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Group) {
-            if ((Group == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+        public virtual int Insert(global::System.Nullable<int> Nomer, bool Lecture, bool Practice, string Corps) {
+            if ((Nomer.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Nomer.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Group));
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((bool)(Lecture));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(Practice));
+            if ((Corps == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Corps));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2421,21 +2576,41 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Group, int Original_Key, string Original_Group) {
-            if ((Group == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+        public virtual int Update(global::System.Nullable<int> Nomer, bool Lecture, bool Practice, string Corps, int Original_Key, global::System.Nullable<int> Original_Nomer, bool Original_Lecture, bool Original_Practice, string Original_Corps) {
+            if ((Nomer.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Nomer.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Group));
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_Key));
-            if ((Original_Group == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(1));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((bool)(Lecture));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(Practice));
+            if ((Corps == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Group));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Corps));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Key));
+            if ((Original_Nomer.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Nomer.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(Original_Lecture));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_Practice));
+            if ((Original_Corps == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Corps));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2597,7 +2772,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Practice", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Groups", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Groups", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Groups", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Hours", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Hours", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Hours", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Hours", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
@@ -2609,7 +2784,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Subject", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Subject", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Lecture", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Groups", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Groups", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Hours", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Hours", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
@@ -2619,7 +2794,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Subject", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Subject", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Lecture", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Lecture", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Groups", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Groups", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Hours", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Hours", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Key", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Key", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Teacher", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Teacher", global::System.Data.DataRowVersion.Original, true, null));
@@ -2631,7 +2806,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Practice", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Practice", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Practice", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Groups", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Groups", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Groups", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Groups", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Hours", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Hours", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Hours", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Hours", global::System.Data.DataRowVersion.Original, false, null));
         }
@@ -2640,7 +2815,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2Connection;
+            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2710,7 +2885,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Key, global::System.Nullable<int> Original_Teacher, global::System.Nullable<int> Original_Subject, bool Original_Lecture, bool Original_Practice, global::System.Nullable<int> Original_Groups, global::System.Nullable<int> Original_Hours) {
+        public virtual int Delete(int Original_Key, global::System.Nullable<int> Original_Teacher, global::System.Nullable<int> Original_Subject, bool Original_Lecture, bool Original_Practice, string Original_Groups, global::System.Nullable<int> Original_Hours) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Key));
             if ((Original_Teacher.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -2732,13 +2907,13 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Lecture));
             this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[8].Value = ((bool)(Original_Practice));
-            if ((Original_Groups.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_Groups.Value));
-            }
-            else {
+            if ((Original_Groups == null)) {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_Groups));
             }
             if ((Original_Hours.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
@@ -2768,7 +2943,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> Teacher, global::System.Nullable<int> Subject, bool Lecture, bool Practice, global::System.Nullable<int> Groups, global::System.Nullable<int> Hours) {
+        public virtual int Insert(global::System.Nullable<int> Teacher, global::System.Nullable<int> Subject, bool Lecture, bool Practice, string Groups, global::System.Nullable<int> Hours) {
             if ((Teacher.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Teacher.Value));
             }
@@ -2783,11 +2958,11 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             }
             this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(Lecture));
             this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Practice));
-            if ((Groups.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Groups.Value));
+            if ((Groups == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Groups));
             }
             if ((Hours.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((int)(Hours.Value));
@@ -2815,7 +2990,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> Teacher, global::System.Nullable<int> Subject, bool Lecture, bool Practice, global::System.Nullable<int> Groups, global::System.Nullable<int> Hours, int Original_Key, global::System.Nullable<int> Original_Teacher, global::System.Nullable<int> Original_Subject, bool Original_Lecture, bool Original_Practice, global::System.Nullable<int> Original_Groups, global::System.Nullable<int> Original_Hours) {
+        public virtual int Update(global::System.Nullable<int> Teacher, global::System.Nullable<int> Subject, bool Lecture, bool Practice, string Groups, global::System.Nullable<int> Hours, int Original_Key, global::System.Nullable<int> Original_Teacher, global::System.Nullable<int> Original_Subject, bool Original_Lecture, bool Original_Practice, string Original_Groups, global::System.Nullable<int> Original_Hours) {
             if ((Teacher.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Teacher.Value));
             }
@@ -2830,11 +3005,11 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(Lecture));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Practice));
-            if ((Groups.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Groups.Value));
+            if ((Groups == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Groups));
             }
             if ((Hours.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Hours.Value));
@@ -2863,13 +3038,13 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_Lecture));
             this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
             this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_Practice));
-            if ((Original_Groups.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_Groups.Value));
-            }
-            else {
+            if ((Original_Groups == null)) {
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Groups));
             }
             if ((Original_Hours.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
@@ -3048,7 +3223,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2Connection;
+            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3360,7 +3535,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2Connection;
+            this._connection.ConnectionString = global::Diplom_v._0._36.Properties.Settings.Default.Diplom2ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3532,7 +3707,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
-        private GroupsTableAdapter _groupsTableAdapter;
+        private AuditTableAdapter _auditTableAdapter;
         
         private LoadTableAdapter _loadTableAdapter;
         
@@ -3560,12 +3735,12 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public GroupsTableAdapter GroupsTableAdapter {
+        public AuditTableAdapter AuditTableAdapter {
             get {
-                return this._groupsTableAdapter;
+                return this._auditTableAdapter;
             }
             set {
-                this._groupsTableAdapter = value;
+                this._auditTableAdapter = value;
             }
         }
         
@@ -3630,9 +3805,9 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._groupsTableAdapter != null) 
-                            && (this._groupsTableAdapter.Connection != null))) {
-                    return this._groupsTableAdapter.Connection;
+                if (((this._auditTableAdapter != null) 
+                            && (this._auditTableAdapter.Connection != null))) {
+                    return this._auditTableAdapter.Connection;
                 }
                 if (((this._loadTableAdapter != null) 
                             && (this._loadTableAdapter.Connection != null))) {
@@ -3659,7 +3834,7 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._groupsTableAdapter != null)) {
+                if ((this._auditTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._loadTableAdapter != null)) {
@@ -3682,15 +3857,6 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(Diplom2DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._groupsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Groups.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._groupsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._subjectsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Subjects.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -3706,6 +3872,15 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._teachersTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._auditTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Audit.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._auditTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -3728,14 +3903,6 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(Diplom2DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._groupsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Groups.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._groupsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._subjectsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Subjects.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -3749,6 +3916,14 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._teachersTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._auditTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Audit.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._auditTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -3778,6 +3953,14 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._auditTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Audit.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._auditTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._teachersTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Teachers.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -3791,14 +3974,6 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._subjectsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._groupsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Groups.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._groupsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -3841,8 +4016,8 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._groupsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._groupsTableAdapter.Connection) == false))) {
+            if (((this._auditTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._auditTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
@@ -3893,13 +4068,13 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._groupsTableAdapter != null)) {
-                    revertConnections.Add(this._groupsTableAdapter, this._groupsTableAdapter.Connection);
-                    this._groupsTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
-                    this._groupsTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
-                    if (this._groupsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._groupsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._groupsTableAdapter.Adapter);
+                if ((this._auditTableAdapter != null)) {
+                    revertConnections.Add(this._auditTableAdapter, this._auditTableAdapter.Connection);
+                    this._auditTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
+                    this._auditTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
+                    if (this._auditTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._auditTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._auditTableAdapter.Adapter);
                     }
                 }
                 if ((this._loadTableAdapter != null)) {
@@ -3987,9 +4162,9 @@ namespace Diplom_v._0._36.Diplom2DataSetTableAdapters {
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._groupsTableAdapter != null)) {
-                    this._groupsTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._groupsTableAdapter]));
-                    this._groupsTableAdapter.Transaction = null;
+                if ((this._auditTableAdapter != null)) {
+                    this._auditTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._auditTableAdapter]));
+                    this._auditTableAdapter.Transaction = null;
                 }
                 if ((this._loadTableAdapter != null)) {
                     this._loadTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._loadTableAdapter]));
