@@ -57,7 +57,7 @@ namespace Diplom_v._0._36
                                 {
                                     Add_teachers sub = new Add_teachers(FIO, subject, group, lecture, practice);
                                     sub.Add_tch();
-                                    Main_form F = this.Owner as Main_form;
+                                    Main_form F = Owner as Main_form;
                                     if (F != null)
                                     {
                                         F.kol = dataGridView1.RowCount;
@@ -95,8 +95,12 @@ namespace Diplom_v._0._36
         
         private void Load_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
+            // TODO: This line of code loads data into the 'diplom2DataSet.Load' table. You can move, or remove it, as needed.
             this.loadTableAdapter.Fill(this.diplom2DataSet.Load);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
+            loadTableAdapter.Fill(diplom2DataSet.Load);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
+            loadTableAdapter.Fill(diplom2DataSet.Load);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

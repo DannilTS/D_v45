@@ -105,10 +105,16 @@ namespace Diplom_v._0._36
                         Teacher_dell();
                         teachersTableAdapter.Fill(diplom2DataSet.Teachers);
                         dataGridView1.Refresh();
+                        textBox1.Refresh();
                     }
                     catch
                     { }
                 }
+            }
+            else
+            {
+                DialogResult res = MessageBox.Show("Выберите строку для редактирования!", "Ошибка!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }
 

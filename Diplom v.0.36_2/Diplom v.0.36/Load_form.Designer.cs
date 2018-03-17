@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.loadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.diplom2DataSet = new Diplom_v._0._36.Diplom2DataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.diplom2DataSet = new Diplom_v._0._36.Diplom2DataSet();
-            this.loadBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.loadTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.LoadTableAdapter();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,10 +57,10 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loadBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -90,6 +90,16 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
+            // 
+            // loadBindingSource
+            // 
+            this.loadBindingSource.DataMember = "Load";
+            this.loadBindingSource.DataSource = this.diplom2DataSet;
+            // 
+            // diplom2DataSet
+            // 
+            this.diplom2DataSet.DataSetName = "Diplom2DataSet";
+            this.diplom2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -255,16 +265,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // diplom2DataSet
-            // 
-            this.diplom2DataSet.DataSetName = "Diplom2DataSet";
-            this.diplom2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // loadBindingSource
-            // 
-            this.loadBindingSource.DataMember = "Load";
-            this.loadBindingSource.DataSource = this.diplom2DataSet;
-            // 
             // loadTableAdapter
             // 
             this.loadTableAdapter.ClearBeforeFill = true;
@@ -275,48 +275,59 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Key";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // dataGridViewTextBoxColumn6
             // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Teacher";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Teacher";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Преподаватель";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dataGridViewTextBoxColumn7
             // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Subject";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Subject";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Предмет";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dataGridViewCheckBoxColumn3
             // 
+            this.dataGridViewCheckBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewCheckBoxColumn3.DataPropertyName = "Lecture";
-            this.dataGridViewCheckBoxColumn3.HeaderText = "Lecture";
+            this.dataGridViewCheckBoxColumn3.HeaderText = "Лекция";
             this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
             this.dataGridViewCheckBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewCheckBoxColumn4
             // 
+            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewCheckBoxColumn4.DataPropertyName = "Practice";
-            this.dataGridViewCheckBoxColumn4.HeaderText = "Practice";
+            this.dataGridViewCheckBoxColumn4.HeaderText = "Практика";
             this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
             this.dataGridViewCheckBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn8
             // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Groups";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Groups";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Группа";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dataGridViewTextBoxColumn9
             // 
+            this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Hours";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Hours";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Кол-во часов";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Load_form
             // 
@@ -330,11 +341,11 @@
             this.Text = "Нагрузка";
             this.Load += new System.EventHandler(this.Load_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loadBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -107,6 +107,9 @@
       <DependentUpon>Audit_form.cs</DependentUpon>
     </Compile>
     <Compile Include="Digit.cs" />
+    <Compile Include="Diplom2DataSet.cs">
+      <DependentUpon>Diplom2DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Diplom2DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

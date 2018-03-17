@@ -38,7 +38,7 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT [Key], Nomer, Lecture, Practice, Corps FROM Audit</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -72,17 +72,7 @@
               <Mapping SourceColumn="Practice" DataSetColumn="Practice" />
               <Mapping SourceColumn="Corps" DataSetColumn="Corps" />
             </Mappings>
-            <Sources>
-              <DbSource ConnectionRef="Diplom2ConnectionString (Settings)" DbObjectName="Audit" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT        [Key], Nomer, Lecture, Practice, Corps
-FROM            Audit</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </Sources>
+            <Sources />
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="LoadTableAdapter" GeneratorDataComponentClassName="LoadTableAdapter" Name="Load" UserDataComponentName="LoadTableAdapter">
             <MainSource>

@@ -110,6 +110,11 @@ namespace Diplom_v._0._36
                     { }
                 }
             }
+            else
+            {
+                DialogResult res = MessageBox.Show("Выберите строку для редактирования!", "Ошибка!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
         }
 
         private void Subject_add(string subject)    //метод для внесения предметов в таблицу
@@ -122,14 +127,12 @@ namespace Diplom_v._0._36
             OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
             DataSet ds = new DataSet(); //создаем датасет
             da.Fill(ds, "Subjects"); // работаем с таблицей предметов
-            ds.Tables["Subjects"].Rows.Add(); //создаем новую строку в таблице
-            int last = ds.Tables["Subjects"].Rows.Count - 1; //берем айди новой строки
-            ds.Tables["Subjects"].Rows[last]["Subject"] = subject; //вносим название в новую строку
+            ds.Tables["Subjects"].Rows[RowId]["Subject"] = subject; //вносим название в  строку
             da.Update(ds, "Subjects"); //закидываем апдейт в бд
             con.Close(); //закрываем коннект
         }
 
-        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) //получение id выбранной строки
         {
             try
             {
@@ -138,7 +141,7 @@ namespace Diplom_v._0._36
             }
             catch (Exception)
             { }
-        }//получение id выбранной строки
+        }
 
         private void Subject_edit(string subject)    //метод для редактирования предмета в таблице
         {

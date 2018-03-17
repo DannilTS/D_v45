@@ -30,19 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.subjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.diplom2DataSet = new Diplom_v._0._36.Diplom2DataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.diplom2DataSet = new Diplom_v._0._36.Diplom2DataSet();
-            this.subjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.subjectsTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.SubjectsTableAdapter();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -65,6 +65,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(431, 141);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
+            // 
+            // subjectsBindingSource
+            // 
+            this.subjectsBindingSource.DataMember = "Subjects";
+            this.subjectsBindingSource.DataSource = this.diplom2DataSet;
+            // 
+            // diplom2DataSet
+            // 
+            this.diplom2DataSet.DataSetName = "Diplom2DataSet";
+            this.diplom2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -117,16 +127,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // diplom2DataSet
-            // 
-            this.diplom2DataSet.DataSetName = "Diplom2DataSet";
-            this.diplom2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // subjectsBindingSource
-            // 
-            this.subjectsBindingSource.DataMember = "Subjects";
-            this.subjectsBindingSource.DataSource = this.diplom2DataSet;
-            // 
             // subjectsTableAdapter
             // 
             this.subjectsTableAdapter.ClearBeforeFill = true;
@@ -137,13 +137,16 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Key";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Subject";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Subject";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Предмет";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Subjects_form
             // 
@@ -161,8 +164,8 @@
             this.Text = "Предметы";
             this.Load += new System.EventHandler(this.Subjects_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

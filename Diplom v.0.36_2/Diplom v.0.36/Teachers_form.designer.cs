@@ -30,19 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.teachersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.diplom2DataSet = new Diplom_v._0._36.Diplom2DataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.diplom2DataSet = new Diplom_v._0._36.Diplom2DataSet();
-            this.teachersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.teachersTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.TeachersTableAdapter();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -69,6 +69,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(431, 141);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
+            // 
+            // teachersBindingSource
+            // 
+            this.teachersBindingSource.DataMember = "Teachers";
+            this.teachersBindingSource.DataSource = this.diplom2DataSet;
+            // 
+            // diplom2DataSet
+            // 
+            this.diplom2DataSet.DataSetName = "Diplom2DataSet";
+            this.diplom2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -121,16 +131,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // diplom2DataSet
-            // 
-            this.diplom2DataSet.DataSetName = "Diplom2DataSet";
-            this.diplom2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // teachersBindingSource
-            // 
-            this.teachersBindingSource.DataMember = "Teachers";
-            this.teachersBindingSource.DataSource = this.diplom2DataSet;
-            // 
             // teachersTableAdapter
             // 
             this.teachersTableAdapter.ClearBeforeFill = true;
@@ -141,13 +141,16 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Key";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
             // 
             // dataGridViewTextBoxColumn3
             // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "FIO";
-            this.dataGridViewTextBoxColumn3.HeaderText = "FIO";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Ф.И.О. преподавателя";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Teachers_form
             // 
@@ -165,8 +168,8 @@
             this.Text = "Преподаватели";
             this.Load += new System.EventHandler(this.Teachers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
