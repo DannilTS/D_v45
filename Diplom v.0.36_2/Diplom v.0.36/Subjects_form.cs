@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using System.Text.RegularExpressions;
 using System.Data.OleDb;
 
 namespace Diplom_v._0._36
@@ -28,9 +29,9 @@ namespace Diplom_v._0._36
         private void button1_Click(object sender, EventArgs e)  //добавление предметов в список
         {
             string subject = textBox1.Text;
+            subject=Subject_Replace(subject);
             bool proverka = false;                                              //для проверки дубликатов
-            subject = subject.Replace("Ё", "Е").Replace("ё", "е");                       //замена Ё на Е и ё на е
-            if (subject != "") //проверка на пустоту в текстбокс
+            if (subject != "")      //проверка на пустоту в текстбокс
             {
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
@@ -61,6 +62,7 @@ namespace Diplom_v._0._36
             if (dataGridView1.SelectedRows.Count != 0)
             {
                 string subject = textBox1.Text;
+                subject = Subject_Replace(subject);
                 bool proverka = false;
                 if (subject != "")  //проверка на пустоту в textBox1
                 {
@@ -173,7 +175,19 @@ namespace Diplom_v._0._36
             con.Close();
         }
 
-       
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)  //разрешение на ввод определенных символов
+        {
+            char word = e.KeyChar;
+            if ((word < 'А' || word > 'я') && word != '\b' && word != ' ')
+            {
+                e.Handled = true;
+            }
+        }
 
+        public string Subject_Replace(string subject)   //удаление пробелов
+        {
+            subject = subject.Trim();
+            return subject = Regex.Replace(subject, @"\s+", " ");
+        }
     }
 }

@@ -220,5 +220,14 @@ namespace Diplom_v._0._36
             da.Update(diplom2DataSet, "Audit"); //закидываем апдейт в бд
             con.Close(); //закрываем коннект
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)  //ввод только чисел
+        {
+            char number = e.KeyChar;
+            if(!Char.IsDigit(number) && number!= '\b')
+            {
+                e.Handled = true;
+            }
+        }
     }
  }

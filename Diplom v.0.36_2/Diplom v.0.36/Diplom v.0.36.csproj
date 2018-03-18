@@ -99,7 +99,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add_teachers.cs" />
+    <Compile Include="Load_add.cs" />
     <Compile Include="Audit_form.cs">
       <SubType>Form</SubType>
     </Compile>

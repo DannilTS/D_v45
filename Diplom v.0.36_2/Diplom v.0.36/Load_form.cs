@@ -19,34 +19,29 @@ namespace Diplom_v._0._36
         }
         private int RowId;
         private void button1_Click(object sender, EventArgs e) //добавление
-        {
-            string FIO = textBox1.Text;
-            FIO = FIO.Replace("Ё", "Е").Replace("ё", "е");                       //замена Ё на Е и ё на е
-            string subject = textBox2.Text;
-            subject = subject.Replace("Ё", "Е").Replace("ё", "е");              //замена Ё на Е и ё на е
-            string group = textBox3.Text;
-            group = group.Replace("Ё", "Е").Replace("ё", "е");                  //замена Ё на Е и ё на е
-            bool lecture = radioButton1.Checked;
-            bool practice = radioButton2.Checked;
+        {   
+            int FIO = (int)comboBox1.SelectedValue;                             //Ф.И.О. преподавателей
+            int subject = (int)comboBox2.SelectedValue;                         //предметы
+            string group = textBox3.Text;                                       //группы
+            bool lecture = radioButton1.Checked;                                //лекция это
+            bool practice = radioButton2.Checked;                               //или практика
             bool proverka = false;                                              //для проверки дубликатов
-            bool dg = false;
-            bool dt = false;                                                    //для класса Digit
-            if (FIO != "") //проверка на пустоту в текстбокс
+            int number = Convert.ToInt32(textBox1.Text);
+            if (FIO != 0) //проверка на пустоту в comboBox1
             {
-                if (subject != "")//проверка на пустоту в текстбокс
-                {
-                    Digit Digit = new Digit(FIO, subject, dg, dt);
-                    Digit.Digit_t();
-                    if (Digit.dg == false || Digit.dt == false)
-                   
+                if (subject != 0)//проверка на пустоту в comboBox2
+                {                 
                         if (group != "")//проверка на пустоту в текстбокс
                         {
-                            if (lecture ^ practice)//проверка на пустоту в radioButtons
+                        if (lecture ^ practice)//проверка на пустоту в radioButtons
+                        {
+                            if (number != 0)    //проверка на пустоту в textBox1
                             {
                                 for (int i = 0; i < dataGridView1.RowCount; i++)
                                 {
 
-                                    if (FIO == (string)dataGridView1[1, i].Value && subject == (string)dataGridView1[2, i].Value && group == (string)dataGridView1[5, i].Value && lecture == (bool)dataGridView1[3, i].Value && practice == (bool)dataGridView1[4, i].Value)    //проверка на дубликаты
+                                    if (FIO == (int)dataGridView1[1, i].Value && subject == (int)dataGridView1[2, i].Value && group == (string)dataGridView1[5, i].Value 
+                                        && lecture == (bool)dataGridView1[3, i].Value && practice == (bool)dataGridView1[4, i].Value && number==(int)dataGridView1[6,i].Value)    //проверка на дубликаты
                                     {
                                         DialogResult res = MessageBox.Show("Такая запись уже есть!", "Внимание", MessageBoxButtons.OK,
                                         MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
@@ -55,7 +50,7 @@ namespace Diplom_v._0._36
                                 }
                                 if (proverka == false)
                                 {
-                                    Add_teachers sub = new Add_teachers(FIO, subject, group, lecture, practice);
+                                    Load_add sub = new Load_add(FIO, subject, group, lecture, practice, number);
                                     sub.Add_tch();
                                     Main_form F = Owner as Main_form;
                                     if (F != null)
@@ -68,26 +63,32 @@ namespace Diplom_v._0._36
                             }
                             else
                             {
-                                DialogResult res = MessageBox.Show("Выберите тип занятия!", "Внимание", MessageBoxButtons.OK,
+                                DialogResult res = MessageBox.Show("Введите количество часов!", "Внимание!", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                             }
                         }
                         else
                         {
-                            DialogResult res = MessageBox.Show("Введите группу!", "Внимание", MessageBoxButtons.OK,
+                            DialogResult res = MessageBox.Show("Выберите тип занятия!", "Внимание!", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        }
+                        }
+                        else
+                        {
+                            DialogResult res = MessageBox.Show("Введите группу!", "Внимание!", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                         }
                     }
 
                     else
                     {
-                        DialogResult res = MessageBox.Show("Введите предмет!", "Внимание", MessageBoxButtons.OK,
+                        DialogResult res = MessageBox.Show("Введите предмет!", "Внимание!", MessageBoxButtons.OK,
                             MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
                 }
                 else
                 {
-                    DialogResult res = MessageBox.Show("Введите преподавателя!", "Внимание", MessageBoxButtons.OK,
+                    DialogResult res = MessageBox.Show("Введите преподавателя!", "Внимание!", MessageBoxButtons.OK,
                         MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
 
@@ -95,12 +96,12 @@ namespace Diplom_v._0._36
         
         private void Load_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'diplom2DataSet.Load' table. You can move, or remove it, as needed.
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Subjects". При необходимости она может быть перемещена или удалена.
+            this.subjectsTableAdapter.Fill(this.diplom2DataSet.Subjects);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Teachers". При необходимости она может быть перемещена или удалена.
+            this.teachersTableAdapter.Fill(this.diplom2DataSet.Teachers);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
             this.loadTableAdapter.Fill(this.diplom2DataSet.Load);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
-            loadTableAdapter.Fill(diplom2DataSet.Load);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
-            loadTableAdapter.Fill(diplom2DataSet.Load);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -144,8 +145,8 @@ namespace Diplom_v._0._36
             try
             {
                 RowId = e.RowIndex;
-                textBox1.Text = diplom2DataSet.Load.Rows[RowId]["Teacher"].ToString();
-                textBox2.Text = diplom2DataSet.Load.Rows[RowId]["Subject"].ToString();
+                comboBox1.SelectedItem = diplom2DataSet.Load.Rows[RowId]["Teacher"].ToString();
+                comboBox2.SelectedItem = diplom2DataSet.Load.Rows[RowId]["Subject"].ToString();
                 radioButton1.Checked = Convert.ToBoolean(diplom2DataSet.Load.Rows[RowId]["Lecture"].ToString());
                 radioButton2.Checked = Convert.ToBoolean(diplom2DataSet.Load.Rows[RowId]["Practice"].ToString());
                 textBox3.Text = diplom2DataSet.Load.Rows[RowId]["Groups"].ToString();
@@ -158,69 +159,76 @@ namespace Diplom_v._0._36
         {
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                string FIO = textBox1.Text;
-                string subject = textBox2.Text;
+                int FIO = (int)comboBox1.SelectedValue;
+                int subject = (int)comboBox2.SelectedValue;
                 string group = textBox3.Text;
                 bool lecture = radioButton1.Checked;
                 bool practice = radioButton2.Checked;
+                int number = Convert.ToInt32(textBox1.Text);
                 bool proverka = false;
-                if (FIO != "") //проверка на пустоту в текстбокс
+                if (FIO != 0) //проверка на пустоту в текстбокс
                 {
-                    if (subject != "")
+                    if (subject != 0)
                     {
                         if (group != "")
                         {
                             if (lecture ^ practice)
                             {
-                                for (int i = 0; i < dataGridView1.RowCount; i++)
+                                if (number != 0)    //проверка на пустоту в textBox1
                                 {
-
-                                    if (FIO == (string)dataGridView1[1, i].Value && subject == (string)dataGridView1[2, i].Value && group == (string)dataGridView1[5, i].Value && lecture == (bool)dataGridView1[3, i].Value && practice == (bool)dataGridView1[4, i].Value)    //проверка на дубликаты
+                                    for (int i = 0; i < dataGridView1.RowCount; i++)
                                     {
-                                        DialogResult res = MessageBox.Show("Такая запись уже есть!", "Внимание", MessageBoxButtons.OK,
-                                        MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                                        proverka = true;                                        //если дубликат есть, меняем значение на true
+
+                                        if (FIO == (int)dataGridView1[1, i].Value && subject == (int)dataGridView1[2, i].Value && group == (string)dataGridView1[5, i].Value && lecture == (bool)dataGridView1[3, i].Value && practice == (bool)dataGridView1[4, i].Value)    //проверка на дубликаты
+                                        {
+                                            DialogResult res = MessageBox.Show("Такая запись уже есть!", "Внимание!", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                                            proverka = true;                                        //если дубликат есть, меняем значение на true
+                                        }
+                                    }
+                                    if (proverka == false)
+                                    {
+                                        Load_add sub = new Load_add(FIO, subject, group, lecture, practice,number);
+                                        sub.Edit(RowId);
+                                        loadTableAdapter.Fill(diplom2DataSet.Load);
+                                        dataGridView1.Refresh();
                                     }
                                 }
-                                if (proverka == false)
+                                else
                                 {
-                                    Add_teachers sub = new Add_teachers(FIO, subject, group, lecture, practice);
-                                    sub.Edit(RowId);
-                                    loadTableAdapter.Fill(diplom2DataSet.Load);
-                                    dataGridView1.Refresh();
+                                    DialogResult res = MessageBox.Show("Введите количество часов!", "Внимание!", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                                 }
                             }
                             else
                             {
-                                DialogResult res = MessageBox.Show("Выберите тип занятия!", "Внимание", MessageBoxButtons.OK,
+                                DialogResult res = MessageBox.Show("Выберите тип занятия!", "Внимание!", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                             }
                         }
                         else
                         {
-                            DialogResult res = MessageBox.Show("Введите группу!", "Внимание", MessageBoxButtons.OK,
+                            DialogResult res = MessageBox.Show("Введите группу!", "Внимание!", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                         }
                     }
                     else
                     {
-                        DialogResult res = MessageBox.Show("Введите предмет!", "Внимание", MessageBoxButtons.OK,
+                        DialogResult res = MessageBox.Show("Введите предмет!", "Внимание!", MessageBoxButtons.OK,
                             MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
                 }
 
                 else
                 {
-                    DialogResult res = MessageBox.Show("Введите преподавателя!", "Внимание", MessageBoxButtons.OK,
+                    DialogResult res = MessageBox.Show("Введите преподавателя!", "Внимание!", MessageBoxButtons.OK,
                         MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
             }
             else
             {
-                MessageBox.Show("Выберите строку для редактирования", "Ошибка");
-
-        
-               
+                DialogResult res = MessageBox.Show("Выберите строку для редактирования!", "Ошибка!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }
         Teachers_form Th = null;
@@ -290,6 +298,7 @@ namespace Diplom_v._0._36
                 Ad.Focus();
             }  
         }
-        
+
+
     }
 }
