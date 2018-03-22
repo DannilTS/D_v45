@@ -41,6 +41,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.subjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -54,10 +55,11 @@
             this.loadTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.LoadTableAdapter();
             this.teachersTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.TeachersTableAdapter();
             this.subjectsTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.SubjectsTableAdapter();
-            this.label4 = new System.Windows.Forms.Label();
+            this.teachersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.subjectsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -94,7 +98,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(677, 209);
+            this.dataGridView1.Size = new System.Drawing.Size(786, 216);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
@@ -202,12 +206,21 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 227);
+            this.groupBox1.Location = new System.Drawing.Point(12, 234);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(502, 157);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Редактирование";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Кол-во часов";
             // 
             // textBox1
             // 
@@ -264,7 +277,7 @@
             this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Location = new System.Drawing.Point(529, 227);
+            this.groupBox2.Location = new System.Drawing.Point(638, 234);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(160, 157);
             this.groupBox2.TabIndex = 2;
@@ -313,14 +326,15 @@
             // 
             this.subjectsTableAdapter.ClearBeforeFill = true;
             // 
-            // label4
+            // teachersBindingSource1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Кол-во часов";
+            this.teachersBindingSource1.DataMember = "Teachers";
+            this.teachersBindingSource1.DataSource = this.diplom2DataSet;
+            // 
+            // subjectsBindingSource1
+            // 
+            this.subjectsBindingSource1.DataMember = "Subjects";
+            this.subjectsBindingSource1.DataSource = this.diplom2DataSet;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -332,21 +346,31 @@
             // 
             // dataGridViewTextBoxColumn6
             // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Teacher";
+            this.dataGridViewTextBoxColumn6.DataSource = this.teachersBindingSource1;
+            this.dataGridViewTextBoxColumn6.DisplayMember = "FIO";
+            this.dataGridViewTextBoxColumn6.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.dataGridViewTextBoxColumn6.HeaderText = "Преподаватель";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn6.ValueMember = "Key";
+            this.dataGridViewTextBoxColumn6.Width = 220;
             // 
             // dataGridViewTextBoxColumn7
             // 
-            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Subject";
+            this.dataGridViewTextBoxColumn7.DataSource = this.subjectsBindingSource1;
+            this.dataGridViewTextBoxColumn7.DisplayMember = "Subject";
+            this.dataGridViewTextBoxColumn7.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.dataGridViewTextBoxColumn7.HeaderText = "Предмет";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn7.ValueMember = "Key";
+            this.dataGridViewTextBoxColumn7.Width = 320;
             // 
             // dataGridViewCheckBoxColumn3
             // 
@@ -386,11 +410,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 396);
+            this.ClientSize = new System.Drawing.Size(810, 403);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
-            this.MinimumSize = new System.Drawing.Size(717, 434);
+            this.MinimumSize = new System.Drawing.Size(826, 441);
             this.Name = "Load_form";
             this.Text = "Нагрузка";
             this.Load += new System.EventHandler(this.Load_Load);
@@ -402,6 +426,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectsBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -447,9 +473,11 @@
         private Diplom2DataSetTableAdapters.SubjectsTableAdapter subjectsTableAdapter;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.BindingSource teachersBindingSource1;
+        private System.Windows.Forms.BindingSource subjectsBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
