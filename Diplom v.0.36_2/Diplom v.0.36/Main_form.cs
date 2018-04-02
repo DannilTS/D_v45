@@ -50,14 +50,24 @@ namespace Diplom_v._0._36
         {
             int CountI = 0, CountJ = 0;                             //переменные для формирования матрицы смежности
             var g = new AdjacencyGraph<uzel, Edge<uzel>>();
-            for (int i = 0; i < diplom2DataSet1.Load.Count; i++)
+
+            OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Diplom2.mdb");
+
+            con.Open();
+
+            OleDbDataAdapter da = new OleDbDataAdapter("SELECT t.FIO as Teacher, s.Subject as Subject, l.Lecture as Lecture, l.Practice as Practice, l.Groups as Groups, l.Hours FROM Load l, Teachers t, Subjects s WHERE l.Teacher=t.Key and l.Subject=s.Key", con); //вытаскиваем нагрузку
+            OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 uzel u1 = new uzel();                                                //узел графа
-                u1.teacher = diplom2DataSet1.Load.Rows[i]["Teacher"].ToString();
-                u1.subject = diplom2DataSet1.Load.Rows[i]["Subject"].ToString();
-                u1.leacture = Convert.ToBoolean(diplom2DataSet1.Load.Rows[i]["Lecture"].ToString());
-                u1.practice = Convert.ToBoolean(diplom2DataSet1.Load.Rows[i]["Practice"].ToString());
-                u1.group = diplom2DataSet1.Load.Rows[i]["Groups"].ToString();
+                u1.teacher = dt.Rows[i]["Teacher"].ToString();
+                u1.subject = dt.Rows[i]["Subject"].ToString();
+                u1.leacture = Convert.ToBoolean(dt.Rows[i]["Lecture"].ToString());
+                u1.practice = Convert.ToBoolean(dt.Rows[i]["Practice"].ToString());
+                u1.group = dt.Rows[i]["Groups"].ToString();
                 uz.Add(u1);
             }
             //dataGridView2.RowCount = Convert.ToInt32(uz.Count);       //для проверки работы нужна dataGridView2
@@ -66,7 +76,7 @@ namespace Diplom_v._0._36
             foreach (uzel u in uz)                      //выбираем значение узла из листа uz
             {
                 g.AddVertex(u);                         //создаем вершину с содержимым узла
-                int ch = 1;          
+                int ch = 1;
                 foreach (uzel uu in g.Vertices)         //выбираем занчение узлов из графа
                 {
                     if (ch == g.VertexCount)            //если ch = количеству узлов, прерываем работу
@@ -118,9 +128,9 @@ namespace Diplom_v._0._36
                         g.AddEdge(e1);
                     }
                     //заполнение матрицы смежности\\
-                    for (int i = CountI; i < uz.Count; )
+                    for (int i = CountI; i < uz.Count;)
                     {
-                        for (int j = CountJ; j < uz.Count; )
+                        for (int j = CountJ; j < uz.Count;)
                         {
                             if (grps || u.teacher == uu.teacher)
                             {
@@ -147,9 +157,9 @@ namespace Diplom_v._0._36
                         break;
                     }
                     //заполнение матрицы смежности//
-                        ch++;
-                    }
+                    ch++;
                 }
+            }
 
             //Находим степени вершин по матрице смежности (вынести в метод)
             int number;
@@ -159,9 +169,9 @@ namespace Diplom_v._0._36
                 number = ii;
                 stp.stepeni = 0;
                 stp.number = number;
-                for (int i = ii; i < g.VertexCount; )
+                for (int i = ii; i < g.VertexCount;)
                 {                                   //обход матрицы смежности matrix
-                    for (int j = jj; j < g.VertexCount; )
+                    for (int j = jj; j < g.VertexCount;)
                     {
                         if (matrix[i, j] == 1)      //если находим в строке 1 увеличиваем степень этой вершины соответственно
                         {
@@ -183,15 +193,15 @@ namespace Diplom_v._0._36
                 }
             }
 
-            foreach (uzel col in g.Vertices)    
+            foreach (uzel col in g.Vertices)
             {
                 col.color = 73;                 //присваиваем всем вершинам цвет 73
             }
 
             ////////////////////////////////////////////////////////////////////////////////////////////
             //Алгоритм по присвоению цветов 
-            int t = 0, number_x = 0, number_i = 0;
-            int versh=g.VertexCount;                    //количество вершин в графе (для передачи в метод)
+            int t = 0, number_x = 0, number_i = 0, x = -1;
+            int versh = g.VertexCount;                    //количество вершин в графе (для передачи в метод)
             int[] colors = new int[73];
             for (int i = 0; i < colors.Length; i++)
             {
@@ -200,42 +210,59 @@ namespace Diplom_v._0._36
 
             foreach (uzel col in g.Vertices)
             {
-                for (int x = number_x; NoFullColor(versh, g); )//Цикл по цветам. Условие выхода - все цвета окрашены! Пока не раскрашено( НеВсёЗакрашено) - работает
-                {
+                //for (int x = number_x; ;)// NoFullColor(versh, g); )//Цикл по цветам. Условие выхода - все цвета окрашены! Пока не раскрашено( НеВсёЗакрашено) - работает
+                //{
 
-                    if (col.color == 73)
+                if (col.color == 73)
+                {
+                    x++;
+                    col.color = colors[x];              //Присваиваем новый цвет
+                   
+                }
+                else
+                {
+                    continue;
+                    //number_x--;
+                }
+                // продолжаем дальше;
+                //for (int i = number_i; i < g.VertexCount; )   //цикл, чтобы не только одни вершины раскрасить, а ВСЕ НЕ смежные
+                //{
+                t = col.number;         //Запоминаем номер исследуемой вершины
+                ArrayList al = new ArrayList();
+                for (int j = 0; j < g.VertexCount; j++)     //Идем по строке матрицы по номеру
+                {
+                    //Блок условий проверки на возможность "раскраски" вершины. Под раскраской - подразумевается присваивание номера
+                    if ((matrix[t, j] == 0 && t != j))      //Если 0 - можно назначить цвет, что и у вершины
                     {
-                        col.color = colors[x];              //Присваиваем новый цвет
-                    }
-                    else
-                    {
-                        number_x--;
-                    }
-                    // продолжаем дальше;
-                    for (int i = number_i; i < g.VertexCount; )   //цикл, чтобы не только одни вершины раскрасить, а ВСЕ НЕ смежные
-                    {
-                        t = col.number;         //Запоминаем номер исследуемой вершины
-                        for (int j = 0; j < g.VertexCount; j++)     //Идем по строке матрицы по номеру
+                        bool allow = true;
+                        foreach (int p in al)
                         {
-                            //Блок условий проверки на возможность "раскраски" вершины. Под раскраской - подразумевается присваивание номера
-                            if ((matrix[t, j] == 0 && t != j))      //Если 0 - можно назначить цвет, что и у вершины
+                            if (matrix[j, p] != 0)
                             {
-                                foreach (uzel num in g.Vertices)     //Перебираем все вершины
-                                {
-                                    if (num.number == j && t < j && num.color == 73)   //Если условие выполняется, то присваиваем тот же цвет, что и исследуемой вершины
-                                    {
-                                        num.color = colors[x];
-                                    }
-                                }
+                                allow = false; //можно = false
                             }
                         }
-                        number_i++;
-                        break;
+                        if (!allow)
+                            break;
+                        foreach (uzel num in g.Vertices)     //Перебираем все вершины
+                        {
+                            if (num.number == j && t < j && num.color == 73)   //Если условие выполняется, то присваиваем тот же цвет, что и исследуемой вершины
+                            {
+                                num.color = colors[x];
+                            }
+                        } //НЕЭКОНОМИЧНО. ЦВЕТА В МАССИВ (ИНДЕКС - НОМЕР ВЕРШИНЫ, ЗНАЧЕНИЕ - ЦВЕТА), ПОТОМ ФОРИЧЕМ ПОПРИСВАИВАТЬ ВЕРШИНАМ ЦВЕТА
+                        //тип после закраски:
+                        al.Add(j);
                     }
-                    number_x++;
-                    break;
                 }
+                //    number_i++;
+                //    break;
+                //}
+                //number_x++;
+                //Syuda:
+                //break;
             }
+
             //////////////////////////////////////////////////////////////////////////////////////////////
 
             var graphViz = new GraphvizAlgorithm<uzel, Edge<uzel>>(g, @".\", QuickGraph.Graphviz.Dot.GraphvizImageType.Png);
@@ -264,6 +291,7 @@ namespace Diplom_v._0._36
             }
 
         }
+        
         private static void FormatVertex(object sender, FormatVertexEventArgs<uzel> e)
         {
             string para;
@@ -271,14 +299,14 @@ namespace Diplom_v._0._36
                 para = "Лекция";
             else
                 para = "Практика";
-            e.VertexFormatter.Label = e.Vertex.group + "\n" + e.Vertex.subject + "\n" + e.Vertex.teacher + "\n" + para;
+            e.VertexFormatter.Label = e.Vertex.group + "\n" + e.Vertex.subject + "\n" + e.Vertex.teacher + "\n" + para + "\n\n" + e.Vertex.color.ToString();
             e.VertexFormatter.Shape = GraphvizVertexShape.Circle;
-
             //e.VertexFormatter.BottomLabel = e.Vertex.subject;
+           
 
 
             e.VertexFormatter.StrokeColor = GraphvizColor.Black;
-            e.VertexFormatter.Font = new GraphvizFont("Calibri", 11);
+            e.VertexFormatter.Font = new GraphvizFont("Calibri", 16);
         }
         private static void FormatEdge(object sender, FormatEdgeEventArgs<uzel, Edge<uzel>> e)
         {
@@ -306,6 +334,12 @@ namespace Diplom_v._0._36
                 Process.Start(startInfo);
                 return output;
             }
+        }
+
+        private void Main_form_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
+            this.loadTableAdapter1.Fill(this.diplom2DataSet1.Load);
         }
     }
 }

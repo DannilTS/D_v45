@@ -34,6 +34,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.diplom2DataSet1 = new Diplom_v._0._36.Diplom2DataSet();
+            this.loadTableAdapter1 = new Diplom_v._0._36.Diplom2DataSetTableAdapters.LoadTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet1)).BeginInit();
             this.SuspendLayout();
@@ -91,6 +92,10 @@
             this.diplom2DataSet1.DataSetName = "Diplom2DataSet";
             this.diplom2DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // loadTableAdapter1
+            // 
+            this.loadTableAdapter1.ClearBeforeFill = true;
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,6 +108,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Main_form";
             this.Text = "Расписание";
+            this.Load += new System.EventHandler(this.Main_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet1)).EndInit();
             this.ResumeLayout(false);
@@ -118,6 +124,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
         private Diplom2DataSet diplom2DataSet1;
+        private Diplom2DataSetTableAdapters.LoadTableAdapter loadTableAdapter1;
     }
 }
 
