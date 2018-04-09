@@ -82,55 +82,55 @@ digraph G {
 Грубич Татьяна Юрьевна
 Практика
 
-9"];
+3"];
 14 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Корпоративные информационные системы
 Самойлюков Юрий Николаевич
 Практика
 
-10"];
+3"];
 15 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Стандартизация, сертификация и управление качеством информационных систем
 Нилова Надежда Михайловна
 Практика
 
-11"];
+5"];
 16 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Стандартизация, сертификация и управление качеством информационных систем
 Орлянская Наталья Петровна
 Практика
 
-12"];
+5"];
 17 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Защита информации
 Лаптев Владимир Николаевич
 Лекция
 
-13"];
+4"];
 18 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Основы теории управления
 Лукьяненко Татьяна Викторовна
 Лекция
 
-14"];
+6"];
 19 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Основы теории управления
 Лукьяненко Татьяна Викторовна
 Практика
 
-15"];
+7"];
 20 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Основы теории управления
 Галиев Карим Сулейманович
 Практика
 
-16"];
+7"];
 21 [fontname="Calibri",  fontsize=16, shape=circle, label="ИТ1401
 Защита информации
 Лаптев Владимир Николаевич
 Лекция
 
-17"];
+8"];
 2 -> 0 [ fontname="Calibri",  fontsize=8];
 2 -> 1 [ fontname="Calibri",  fontsize=8];
 3 -> 0 [ fontname="Calibri",  fontsize=8];

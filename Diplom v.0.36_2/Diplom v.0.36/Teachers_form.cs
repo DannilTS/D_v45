@@ -46,8 +46,6 @@ namespace Diplom_v._0._36
                 if (proverka == false)
                 {
                     Teacher_add(FIO);       //вызываем метод 
-                    teachersTableAdapter.Fill(diplom2DataSet.Teachers);
-                    dataGridView1.Refresh();
                 }
             }
             else
@@ -78,9 +76,7 @@ namespace Diplom_v._0._36
                     }
                     if (proverka == false)
                     {
-                        Teacher_edit(FIO);       //вызываем метод 
-                        teachersTableAdapter.Fill(diplom2DataSet.Teachers);
-                        dataGridView1.Refresh();
+                        Teacher_edit(FIO);       //вызываем метод  
                     }
                 }
                 else
@@ -105,9 +101,6 @@ namespace Diplom_v._0._36
                     try
                     {
                         Teacher_dell();
-                        teachersTableAdapter.Fill(diplom2DataSet.Teachers);
-                        dataGridView1.Refresh();
-                        textBox1.Refresh();
                     }
                     catch
                     { }
@@ -135,6 +128,9 @@ namespace Diplom_v._0._36
             ds.Tables["Teachers"].Rows[last]["FIO"] = FIO; //вносим имя в новую строку
             da.Update(ds, "Teachers"); //закидываем апдейт в бд
             con.Close(); //закрываем коннект
+
+            teachersTableAdapter.Fill(diplom2DataSet.Teachers);
+            dataGridView1.Refresh();
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) //выгрузка данных из dataGridView на формы заполнения
@@ -161,6 +157,9 @@ namespace Diplom_v._0._36
             ds.Tables["Teachers"].Rows[RowId]["FIO"] = FIO; //вносим имя в cтроку
             da.Update(ds, "Teachers"); //закидываем апдейт в бд
             con.Close(); //закрываем коннект
+
+            teachersTableAdapter.Fill(diplom2DataSet.Teachers);
+            dataGridView1.Refresh();
         }
 
         private void Teacher_dell() //метод для удаления преподавателя из списка
@@ -174,6 +173,10 @@ namespace Diplom_v._0._36
             OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
             da.Update(diplom2DataSet, "Teachers");
             con.Close();
+
+            teachersTableAdapter.Fill(diplom2DataSet.Teachers);
+            dataGridView1.Refresh();
+            textBox1.Clear();
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)  //разрешение на ввод определенных символов

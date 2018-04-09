@@ -132,14 +132,14 @@ namespace Diplom_v._0._36
                     {
                         for (int j = CountJ; j < uz.Count;)
                         {
-                            if (grps || u.teacher == uu.teacher)
+                            if (grps || u.teacher == uu.teacher)        //если значение группы или имена преподавателей совпадают, то заносим 1 и зеркалим
                             {
                                 matrix[i, j] = 1;
                                 matrix[j, i] = matrix[i, j];
                                 //dataGridView2.Rows[j].Cells[i].Value = matrix[i, j];     для проверки работы нужна dataGridView2
                                 //dataGridView2.Rows[i].Cells[j].Value = matrix[j, i];
                             }
-                            else
+                            else        //иначе заносим в массив 0 и зеркалим
                             {
                                 matrix[i, j] = 0;
                                 matrix[j, i] = matrix[i, j];
@@ -192,77 +192,97 @@ namespace Diplom_v._0._36
 
                 }
             }
-
+            uzel[] practice = new uzel[g.VertexCount];
             foreach (uzel col in g.Vertices)
             {
                 col.color = 73;                 //присваиваем всем вершинам цвет 73
+                practice[col.number] = col;
             }
 
             ////////////////////////////////////////////////////////////////////////////////////////////
             //Алгоритм по присвоению цветов 
-            int t = 0, number_x = 0, number_i = 0, x = -1;
+            int t = 0, x = -1;
             int versh = g.VertexCount;                    //количество вершин в графе (для передачи в метод)
             int[] colors = new int[73];
             for (int i = 0; i < colors.Length; i++)
             {
                 colors[i] = i + 1;
             }
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            //Доработка для практик////
+            //////////////////////////////////////////////////////////////////////////////////////////////
 
-            foreach (uzel col in g.Vertices)
+
+            foreach (uzel col in practice)
             {
-                //for (int x = number_x; ;)// NoFullColor(versh, g); )//Цикл по цветам. Условие выхода - все цвета окрашены! Пока не раскрашено( НеВсёЗакрашено) - работает
-                //{
 
                 if (col.color == 73)
                 {
                     x++;
-                    col.color = colors[x];              //Присваиваем новый цвет
-                   
-                }
+                    col.color = colors[x];              //Присваиваем новый цвет    
+                    int j = col.number;
+                    if (practice[j].practice && practice[j + 1].practice && 
+                        practice[j].group == practice[j + 1].group && 
+                        practice[j].subject == practice[j + 1].subject)     //если данный узел практика  и следующий узел практика,
+                        practice[j + 1].color = colors[x];                  //а также совпадают предметы, то присваиваем следующему
+                }                                                           //узлу значение цвета текущего           
                 else
                 {
                     continue;
-                    //number_x--;
                 }
-                // продолжаем дальше;
-                //for (int i = number_i; i < g.VertexCount; )   //цикл, чтобы не только одни вершины раскрасить, а ВСЕ НЕ смежные
-                //{
                 t = col.number;         //Запоминаем номер исследуемой вершины
-                ArrayList al = new ArrayList();
+                ArrayList al = new ArrayList();     //список закрашенных узлов текущим цветом
                 for (int j = 0; j < g.VertexCount; j++)     //Идем по строке матрицы по номеру
                 {
                     //Блок условий проверки на возможность "раскраски" вершины. Под раскраской - подразумевается присваивание номера
-                    if ((matrix[t, j] == 0 && t != j))      //Если 0 - можно назначить цвет, что и у вершины
+                    if (matrix[t, j] == 0 && t != j && practice[j].color==73)     //Если 0 - можно назначить цвет, что и у вершины
                     {
                         bool allow = true;
                         foreach (int p in al)
                         {
-                            if (matrix[j, p] != 0)
+                            if (matrix[j, p] != 0)       //проверка на связи с раскрашенными узлами текщего цвета
                             {
-                                allow = false; //можно = false
+                                allow = false;           //можно = false
                             }
                         }
-                        if (!allow)
-                            break;
-                        foreach (uzel num in g.Vertices)     //Перебираем все вершины
+                        if (!allow)                     //если нет 0
+                            continue;
+                        if(practice[j].practice)        //если элемент j массива practice= практика
                         {
-                            if (num.number == j && t < j && num.color == 73)   //Если условие выполняется, то присваиваем тот же цвет, что и исследуемой вершины
+                            if(j<practice.Length-1 && practice[j+1].practice && practice[j].group== practice[j+1].group && practice[j].subject == practice[j + 1].subject)     //если предыдущий элемент ArrayList равен текущему то переходим к присвоению цвета
                             {
-                                num.color = colors[x];
+                                bool access = true;
+                                foreach (int p in al)               //проходим ArrayList
+                                {
+                                    if (matrix[j+1, p] != 0)       //проверка на связи с раскрашенными узлами текщего цвета
+                                    {
+                                        access = false;           //можно = false
+                                    }
+                                }
+                                if (!access)                     //если нет 0
+                                    continue;
+                                practice[j].color = colors[x];
+                                practice[j + 1].color = colors[x];
                             }
-                        } //НЕЭКОНОМИЧНО. ЦВЕТА В МАССИВ (ИНДЕКС - НОМЕР ВЕРШИНЫ, ЗНАЧЕНИЕ - ЦВЕТА), ПОТОМ ФОРИЧЕМ ПОПРИСВАИВАТЬ ВЕРШИНАМ ЦВЕТА
-                        //тип после закраски:
-                        al.Add(j);
+                            if (j > 0 && practice[j - 1].practice && practice[j].group == practice[j - 1].group && practice[j].subject == practice[j - 1].subject)  //если предыдущий элемент ArrayList равен текущему то переходим к присвоению цвета
+                            {
+                                continue;
+                            }
+                            practice[j].color = colors[x];
+                        }
+                        else
+                        {
+                            practice[j].color = colors[x];      
+                        }
+                        al.Add(j);          //заносим в ArrayList значение цвета узла
                     }
                 }
-                //    number_i++;
-                //    break;
-                //}
-                //number_x++;
-                //Syuda:
-                //break;
             }
-
+            foreach(uzel col in g.Vertices)
+            {
+                col.color = practice[col.number].color;     //переносим значения цвета узлов из массива в граф
+            }
+            
             //////////////////////////////////////////////////////////////////////////////////////////////
 
             var graphViz = new GraphvizAlgorithm<uzel, Edge<uzel>>(g, @".\", QuickGraph.Graphviz.Dot.GraphvizImageType.Png);
@@ -273,24 +293,24 @@ namespace Diplom_v._0._36
         }
 
         //Возвращает ноль, если все цвета уже присвоены
-        static bool NoFullColor(int versh, AdjacencyGraph<uzel, Edge<uzel>> g)
-        {
-            int flag = 0;
-            foreach (uzel col in g.Vertices)    //Цикл проверяет - все ли цвета посещены
-            {
-                if (col.color <= versh)
-                    flag++;
-            }
-            if (flag == versh)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+        //static bool NoFullColor(int versh, AdjacencyGraph<uzel, Edge<uzel>> g)
+        //{
+        //    int flag = 0;
+        //    foreach (uzel col in g.Vertices)    //Цикл проверяет - все ли цвета посещены
+        //    {
+        //        if (col.color <= versh)
+        //            flag++;
+        //    }
+        //    if (flag == versh)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
 
-        }
+        //}
         
         private static void FormatVertex(object sender, FormatVertexEventArgs<uzel> e)
         {

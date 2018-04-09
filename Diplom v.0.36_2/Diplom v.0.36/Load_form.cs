@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using System.Text.RegularExpressions;
 using System.Data.OleDb;
 namespace Diplom_v._0._36
 {
@@ -23,10 +24,11 @@ namespace Diplom_v._0._36
             int FIO = (int)comboBox1.SelectedValue;                             //Ф.И.О. преподавателей
             int subject = (int)comboBox2.SelectedValue;                         //предметы
             string group = textBox3.Text;                                       //группы
+            group = Group_Replace(group);                                       //вызов метода удаления пробелов
             bool lecture = radioButton1.Checked;                                //лекция это
             bool practice = radioButton2.Checked;                               //или практика
             bool proverka = false;                                              //для проверки дубликатов
-            int number = Convert.ToInt32(textBox1.Text);
+            int number = Convert.ToInt32(textBox1.Text);                        //количество часов
             if (FIO != 0) //проверка на пустоту в comboBox1
             {
                 if (subject != 0)//проверка на пустоту в comboBox2
@@ -264,8 +266,7 @@ namespace Diplom_v._0._36
                 Sb.Dock = DockStyle.Fill;
                 Sb.Show();
                 Sb.Focus();
-            }           
-          
+            }            
         }
 
         private bool CheckOpened(string name)   //проверка на открытие или закрытие формы
@@ -299,6 +300,19 @@ namespace Diplom_v._0._36
             }  
         }
 
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)  //разрешение на ввод определенных символов в поле "Кол-во часов"
+        {
+            char number = e.KeyChar;
+            if (!char.IsNumber(e.KeyChar) && number != '\b')
+            {
+                e.Handled = true;
+            }
+        }
 
+        public string Group_Replace(string group)   //удаление пробелов в строке группа
+        {
+            group = group.Trim();
+            return group = Regex.Replace(group, @"\s+", " ");
+        }
     }
 }
