@@ -40,12 +40,6 @@ namespace Diplom_v._0._36
 
         ArrayList uz = new ArrayList();     
         public int kol;
-        private void button1_Click(object sender, EventArgs e) //открытие формы "Нагрузка"
-        {
-            Load_form LD = new Load_form();
-            LD.Owner = this;
-            LD.Show();
-        }
         private void button2_Click(object sender, EventArgs e)
         {
             int CountI = 0, CountJ = 0;                             //переменные для формирования матрицы смежности
@@ -360,6 +354,38 @@ namespace Diplom_v._0._36
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
             this.loadTableAdapter1.Fill(this.diplom2DataSet1.Load);
+        }
+
+        Load_form Ld = null;
+        private void button1_Click(object sender, EventArgs e) //открытие формы "Нагрузка"
+        {
+            if (Ld == null || Ld.Text == "")
+            {
+                Ld = new Load_form();
+                Ld.Dock = DockStyle.Fill;
+                Ld.Show();
+            }
+            else if (CheckOpened(Ld.Text))
+            {
+                Ld.WindowState = FormWindowState.Normal;
+                Ld.Dock = DockStyle.Fill;
+                Ld.Show();
+                Ld.Focus();
+            }
+        }
+       
+        private bool CheckOpened(string name)   //проверка на открытие или закрытие формы
+        {
+            FormCollection fc = Application.OpenForms;
+
+            foreach (Form frm in fc)
+            {
+                if (frm.Text == name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
