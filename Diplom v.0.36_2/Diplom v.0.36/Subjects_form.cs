@@ -45,9 +45,7 @@ namespace Diplom_v._0._36
                 }
                 if (proverka == false)
                 {
-                    Subject_add(subject);       //вызываем метод 
-                    subjectsTableAdapter.Fill(diplom2DataSet.Subjects);
-                    dataGridView1.Refresh();
+                    Subject_add(subject);       //вызываем метод добавения предмета
                 }
             }
             else
@@ -78,9 +76,7 @@ namespace Diplom_v._0._36
                     }
                     if (proverka == false)
                     {
-                        Subject_edit(subject);       //вызываем метод 
-                        subjectsTableAdapter.Fill(diplom2DataSet.Subjects);
-                        dataGridView1.Refresh();    //обновляем dataGridView1
+                        Subject_edit(subject);       //вызываем метод редактирования предмета
                     }
                 }
                 else
@@ -104,9 +100,7 @@ namespace Diplom_v._0._36
                 {
                     try
                     {
-                        Subject_dell();
-                        subjectsTableAdapter.Fill(diplom2DataSet.Subjects);
-                        dataGridView1.Refresh();
+                        Subject_dell();     //вызываем метод удаления предмета
                     }
                     catch
                     { }
@@ -129,9 +123,13 @@ namespace Diplom_v._0._36
             OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
             DataSet ds = new DataSet(); //создаем датасет
             da.Fill(ds, "Subjects"); // работаем с таблицей предметов
-            ds.Tables["Subjects"].Rows[RowId]["Subject"] = subject; //вносим название в  строку
+            ds.Tables["Subjects"].Rows.Add(); //создаем новую строку в таблице
+            int last = ds.Tables["Subjects"].Rows.Count - 1; //берем айди новой строки
+            ds.Tables["Subjects"].Rows[last]["Subject"] = subject; //вносим название в новую строку
             da.Update(ds, "Subjects"); //закидываем апдейт в бд
             con.Close(); //закрываем коннект
+            subjectsTableAdapter.Fill(diplom2DataSet.Subjects);
+            dataGridView1.Refresh();
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) //получение id выбранной строки
@@ -155,11 +153,11 @@ namespace Diplom_v._0._36
             OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
             DataSet ds = new DataSet(); //создаем датасет
             da.Fill(ds, "Subjects"); // работаем с таблицей предметов
-            ds.Tables["Subjects"].Rows.Add(); //создаем новую строку в таблице
-            int last = ds.Tables["Subjects"].Rows.Count - 1; //берем айди новой строки
-            ds.Tables["Subjects"].Rows[last]["Subject"] = subject; //вносим название в новую строку
+            ds.Tables["Subjects"].Rows[RowId]["Subject"] = subject; //вносим название в  строку
             da.Update(ds, "Subjects"); //закидываем апдейт в бд
             con.Close(); //закрываем коннект
+            subjectsTableAdapter.Fill(diplom2DataSet.Subjects);
+            dataGridView1.Refresh();    //обновляем dataGridView1
         }
 
         private void Subject_dell() //метод для удаления предмета из списка
@@ -173,6 +171,8 @@ namespace Diplom_v._0._36
             OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
             da.Update(diplom2DataSet, "Subjects");
             con.Close();
+            subjectsTableAdapter.Fill(diplom2DataSet.Subjects);
+            dataGridView1.Refresh();
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)  //разрешение на ввод определенных символов

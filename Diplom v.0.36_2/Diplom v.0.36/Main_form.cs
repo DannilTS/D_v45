@@ -64,8 +64,6 @@ namespace Diplom_v._0._36
                 u1.group = dt.Rows[i]["Groups"].ToString();
                 uz.Add(u1);
             }
-            //dataGridView2.RowCount = Convert.ToInt32(uz.Count);       //для проверки работы нужна dataGridView2
-            //dataGridView2.ColumnCount = Convert.ToInt32(uz.Count);
             int[,] matrix = new int[uz.Count, uz.Count];                // создание матрицы смежности      
             foreach (uzel u in uz)                      //выбираем значение узла из листа uz
             {
@@ -76,7 +74,6 @@ namespace Diplom_v._0._36
                     if (ch == g.VertexCount)            //если ch = количеству узлов, прерываем работу
                     {
                         matrix[CountI, CountJ] = 0;
-                        //dataGridView2.Rows[CountI].Cells[CountJ].Value = matrix[CountI, CountJ];   //для проверки работы нужна dataGridView2
                         CountI++;
                         CountJ = 0;
                         break;
@@ -130,15 +127,11 @@ namespace Diplom_v._0._36
                             {
                                 matrix[i, j] = 1;
                                 matrix[j, i] = matrix[i, j];
-                                //dataGridView2.Rows[j].Cells[i].Value = matrix[i, j];     для проверки работы нужна dataGridView2
-                                //dataGridView2.Rows[i].Cells[j].Value = matrix[j, i];
                             }
                             else        //иначе заносим в массив 0 и зеркалим
                             {
                                 matrix[i, j] = 0;
                                 matrix[j, i] = matrix[i, j];
-                                //dataGridView2.Rows[j].Cells[i].Value = matrix[i, j];      для проверки работы нужна dataGridView2
-                                //dataGridView2.Rows[i].Cells[j].Value = matrix[j, i];
                             }
                             CountJ++;
                             break;
@@ -173,7 +166,6 @@ namespace Diplom_v._0._36
                             jj++;
                             break;
                         }
-
                         jj++;
                         break;
                     }
@@ -183,7 +175,6 @@ namespace Diplom_v._0._36
                         ii++;
                         break;
                     }
-
                 }
             }
             uzel[] practice = new uzel[g.VertexCount];
@@ -255,18 +246,18 @@ namespace Diplom_v._0._36
                                 }
                                 if (!access)                     //если нет 0
                                     continue;
-                                practice[j].color = colors[x];
-                                practice[j + 1].color = colors[x];
+                                practice[j].color = colors[x];      //задаем цвет
+                                practice[j + 1].color = colors[x];  //задаем цвет следуюего элемента
                             }
                             if (j > 0 && practice[j - 1].practice && practice[j].group == practice[j - 1].group && practice[j].subject == practice[j - 1].subject)  //если предыдущий элемент ArrayList равен текущему то переходим к присвоению цвета
                             {
                                 continue;
                             }
-                            practice[j].color = colors[x];
+                            practice[j].color = colors[x];  //задаем цвет
                         }
                         else
                         {
-                            practice[j].color = colors[x];      
+                            practice[j].color = colors[x];      //задаем цвет    
                         }
                         al.Add(j);          //заносим в ArrayList значение цвета узла
                     }

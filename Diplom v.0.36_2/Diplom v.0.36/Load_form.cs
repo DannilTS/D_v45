@@ -106,11 +106,6 @@ namespace Diplom_v._0._36
             this.loadTableAdapter.Fill(this.diplom2DataSet.Load);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e) //удаление
         {
             if (dataGridView1.SelectedRows.Count != 0)
