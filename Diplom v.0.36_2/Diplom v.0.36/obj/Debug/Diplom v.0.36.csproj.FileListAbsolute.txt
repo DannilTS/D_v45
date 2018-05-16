@@ -37,8 +37,6 @@ C:\GitHub\D_v45\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Teachers_f
 C:\GitHub\D_v45\Diplom v.0.36\Diplom v.0.36\obj\Debug\Diplom v.0.36.csproj.GenerateResource.Cache
 C:\GitHub\D_v45\Diplom v.0.36\Diplom v.0.36\bin\Debug\Diplom2.mdb
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\Diplom v.0.36.exe.config
-C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom v.0.36.exe
-C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom v.0.36.pdb
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\Diplom v.0.36.exe
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\Diplom v.0.36.pdb
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\QuickGraph.Data.dll
@@ -49,11 +47,13 @@ C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\QuickGraph.xml
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\QuickGraph.Data.xml
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\QuickGraph.Graphviz.xml
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\bin\Debug\QuickGraph.Serialization.xml
+C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Audit_form.resources
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Main_form.resources
+C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Load_form.resources
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Properties.Resources.resources
+C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Subjects_form.resources
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Teachers_form.resources
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom v.0.36.csproj.GenerateResource.Cache
-C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Subjects_form.resources
-C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Load_form.resources
-C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom_v._0._36.Audit_form.resources
+C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom v.0.36.exe
+C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom v.0.36.pdb
 C:\GitHub\D_v45\Diplom v.0.36_2\Diplom v.0.36\obj\Debug\Diplom v.0.36.csprojResolveAssemblyReference.cache

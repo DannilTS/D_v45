@@ -17,6 +17,7 @@ namespace Diplom_v._0._36
         public Load_form()
         {
             InitializeComponent();
+            //teachersBindingSource.Sort = "FIO ASC";
         }
         private int RowId;
         private void button1_Click(object sender, EventArgs e) //добавление
@@ -98,12 +99,15 @@ namespace Diplom_v._0._36
         
         private void Load_Load(object sender, EventArgs e)
         {
+           
+
             // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Subjects". При необходимости она может быть перемещена или удалена.
-            this.subjectsTableAdapter.Fill(this.diplom2DataSet.Subjects);
+            subjectsTableAdapter.Fill(diplom2DataSet.Subjects);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Teachers". При необходимости она может быть перемещена или удалена.
-            this.teachersTableAdapter.Fill(this.diplom2DataSet.Teachers);
+            teachersTableAdapter.Fill(diplom2DataSet.Teachers);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
-            this.loadTableAdapter.Fill(this.diplom2DataSet.Load);
+            loadTableAdapter.Fill(diplom2DataSet.Load);
+
         }
 
         private void button2_Click(object sender, EventArgs e) //удаление
@@ -142,11 +146,12 @@ namespace Diplom_v._0._36
             try
             {
                 RowId = e.RowIndex;
-                comboBox1.SelectedItem = diplom2DataSet.Load.Rows[RowId]["Teacher"].ToString();
-                comboBox2.SelectedItem = diplom2DataSet.Load.Rows[RowId]["Subject"].ToString();
+                comboBox1.SelectedValue = Convert.ToInt32(diplom2DataSet.Load.Rows[RowId]["Teacher"]);
+                comboBox2.SelectedValue = diplom2DataSet.Load.Rows[RowId]["Subject"].ToString();
                 radioButton1.Checked = Convert.ToBoolean(diplom2DataSet.Load.Rows[RowId]["Lecture"].ToString());
                 radioButton2.Checked = Convert.ToBoolean(diplom2DataSet.Load.Rows[RowId]["Practice"].ToString());
                 textBox3.Text = diplom2DataSet.Load.Rows[RowId]["Groups"].ToString();
+                textBox1.Text = diplom2DataSet.Load.Rows[RowId]["Hours"].ToString();
             }
             catch(Exception)
             { }
@@ -176,7 +181,8 @@ namespace Diplom_v._0._36
                                     for (int i = 0; i < dataGridView1.RowCount; i++)
                                     {
 
-                                        if (FIO == (int)dataGridView1[1, i].Value && subject == (int)dataGridView1[2, i].Value && group == (string)dataGridView1[5, i].Value && lecture == (bool)dataGridView1[3, i].Value && practice == (bool)dataGridView1[4, i].Value)    //проверка на дубликаты
+                                        if (FIO == (int)dataGridView1[1, i].Value && subject == (int)dataGridView1[2, i].Value && group == (string)dataGridView1[5, i].Value && 
+                                            lecture == (bool)dataGridView1[3, i].Value && practice == (bool)dataGridView1[4, i].Value && number == (int)dataGridView1[6, i].Value)    //проверка на дубликаты
                                         {
                                             DialogResult res = MessageBox.Show("Такая запись уже есть!", "Внимание!", MessageBoxButtons.OK,
                                             MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);

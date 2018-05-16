@@ -185,8 +185,9 @@ namespace Diplom_v._0._36
                 radioButton2.Checked = Convert.ToBoolean(diplom2DataSet.Audit.Rows[RowId]["Practice"].ToString());
                 comboBox1.SelectedItem= diplom2DataSet.Audit.Rows[RowId]["Corps"].ToString();
             }
-            catch (Exception)
-            { }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Audit_edit(int number, bool lec, bool prac, string corp)    //метод для внесения изменений в номерах аудиторий 

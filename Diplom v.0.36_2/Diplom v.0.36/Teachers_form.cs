@@ -118,7 +118,6 @@ namespace Diplom_v._0._36
             OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Diplom2.mdb");
 
             con.Open();
-
             OleDbDataAdapter da = new OleDbDataAdapter("select * from Teachers", con); //получаем таблицу с преподавателями
             OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
             DataSet ds = new DataSet(); //создаем датасет

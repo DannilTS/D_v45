@@ -61,9 +61,9 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.loadTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.LoadTableAdapter();
             this.teachersTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.TeachersTableAdapter();
             this.subjectsTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.SubjectsTableAdapter();
+            this.loadTableAdapter = new Diplom_v._0._36.Diplom2DataSetTableAdapters.LoadTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diplom2DataSet)).BeginInit();
@@ -120,7 +120,6 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn6.ValueMember = "Key";
             this.dataGridViewTextBoxColumn6.Width = 220;
             // 
@@ -136,6 +135,7 @@
             // 
             // dataGridViewTextBoxColumn7
             // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Subject";
             this.dataGridViewTextBoxColumn7.DataSource = this.subjectsBindingSource1;
             this.dataGridViewTextBoxColumn7.DisplayMember = "Subject";
@@ -144,9 +144,8 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.dataGridViewTextBoxColumn7.ValueMember = "Key";
-            this.dataGridViewTextBoxColumn7.Width = 320;
             // 
             // subjectsBindingSource1
             // 
@@ -155,37 +154,37 @@
             // 
             // dataGridViewCheckBoxColumn3
             // 
-            this.dataGridViewCheckBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewCheckBoxColumn3.DataPropertyName = "Lecture";
             this.dataGridViewCheckBoxColumn3.HeaderText = "Лекция";
             this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
             this.dataGridViewCheckBoxColumn3.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn3.Width = 60;
             // 
             // dataGridViewCheckBoxColumn4
             // 
-            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewCheckBoxColumn4.DataPropertyName = "Practice";
             this.dataGridViewCheckBoxColumn4.HeaderText = "Практика";
             this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
             this.dataGridViewCheckBoxColumn4.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn4.Width = 60;
             // 
             // dataGridViewTextBoxColumn8
             // 
-            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Groups";
             this.dataGridViewTextBoxColumn8.HeaderText = "Группа";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn8.Width = 110;
             // 
             // dataGridViewTextBoxColumn9
             // 
-            this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Hours";
             this.dataGridViewTextBoxColumn9.HeaderText = "Кол-во часов";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn9.Width = 80;
             // 
             // loadBindingSource
             // 
@@ -230,7 +229,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(282, 128);
+            this.radioButton1.Location = new System.Drawing.Point(268, 137);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(63, 17);
             this.radioButton1.TabIndex = 6;
@@ -241,7 +240,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(282, 99);
+            this.radioButton2.Location = new System.Drawing.Point(170, 137);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(74, 17);
             this.radioButton2.TabIndex = 7;
@@ -287,10 +286,10 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 234);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 157);
+            this.groupBox1.Size = new System.Drawing.Size(502, 167);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Редактирование";
+            this.groupBox1.Text = "Добавление и редактирование";
             // 
             // label4
             // 
@@ -303,7 +302,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 128);
+            this.textBox1.Location = new System.Drawing.Point(6, 137);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 13;
@@ -316,7 +315,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(6, 88);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(250, 21);
+            this.comboBox2.Size = new System.Drawing.Size(362, 21);
             this.comboBox2.TabIndex = 12;
             this.comboBox2.ValueMember = "Key";
             // 
@@ -328,7 +327,7 @@
             // comboBox1
             // 
             this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox1.DataSource = this.teachersBindingSource;
+            this.comboBox1.DataSource = this.teachersBindingSource1;
             this.comboBox1.DisplayMember = "FIO";
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(9, 42);
@@ -395,10 +394,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // loadTableAdapter
-            // 
-            this.loadTableAdapter.ClearBeforeFill = true;
-            // 
             // teachersTableAdapter
             // 
             this.teachersTableAdapter.ClearBeforeFill = true;
@@ -406,6 +401,10 @@
             // subjectsTableAdapter
             // 
             this.subjectsTableAdapter.ClearBeforeFill = true;
+            // 
+            // loadTableAdapter
+            // 
+            this.loadTableAdapter.ClearBeforeFill = true;
             // 
             // Load_form
             // 
@@ -465,7 +464,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hoursDataGridViewTextBoxColumn;
         private Diplom2DataSet diplom2DataSet;
         private System.Windows.Forms.BindingSource loadBindingSource;
-        private Diplom2DataSetTableAdapters.LoadTableAdapter loadTableAdapter;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.BindingSource teachersBindingSource;
         private Diplom2DataSetTableAdapters.TeachersTableAdapter teachersTableAdapter;
@@ -476,6 +474,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.BindingSource teachersBindingSource1;
         private System.Windows.Forms.BindingSource subjectsBindingSource1;
+        private Diplom2DataSetTableAdapters.LoadTableAdapter loadTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn7;

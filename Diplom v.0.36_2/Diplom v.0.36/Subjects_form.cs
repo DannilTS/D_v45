@@ -178,7 +178,7 @@ namespace Diplom_v._0._36
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)  //разрешение на ввод определенных символов
         {
             char word = e.KeyChar;
-            if ((word < 'А' || word > 'я') && word != '\b' && word != ' ')
+            if ((word < 'А' || word > 'я') && word != '\b' && word != ' ' && word != '-')
             {
                 e.Handled = true;
             }

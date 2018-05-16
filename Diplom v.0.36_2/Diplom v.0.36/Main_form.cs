@@ -34,13 +34,19 @@ namespace Diplom_v._0._36
             public bool leacture;       //это лекция
             public bool practice;       //это практика
             public int color;           //цвет вершины 
-            public int stepeni;         //степень вершины(количество связей)
-            
-        }   
-
-        ArrayList uz = new ArrayList();     
+            public int stepeni;         //степень вершины(количество связей)-приоритет
+            public int classes;         //количество пар
+        }
+        struct priorprioritate
+        {
+           public int color;
+           public int prior;
+        }
+        ArrayList priors = new ArrayList();
+        ArrayList uz = new ArrayList();
+        ArrayList on_delete = new ArrayList();
         public int kol;
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)  //составление расписания
         {
             int CountI = 0, CountJ = 0;                             //переменные для формирования матрицы смежности
             var g = new AdjacencyGraph<uzel, Edge<uzel>>();
@@ -62,6 +68,7 @@ namespace Diplom_v._0._36
                 u1.leacture = Convert.ToBoolean(dt.Rows[i]["Lecture"].ToString());
                 u1.practice = Convert.ToBoolean(dt.Rows[i]["Practice"].ToString());
                 u1.group = dt.Rows[i]["Groups"].ToString();
+                u1.classes = Convert.ToInt32(dt.Rows[i]["Hours"].ToString()) / 16;
                 uz.Add(u1);
             }
             int[,] matrix = new int[uz.Count, uz.Count];                // создание матрицы смежности      
@@ -147,67 +154,85 @@ namespace Diplom_v._0._36
                     ch++;
                 }
             }
-
-            //Находим степени вершин по матрице смежности (вынести в метод)
-            int number;
-            int ii = 0, jj = 0;                 //переменные для подсчета, чтобы использовать foreach
-            foreach (uzel stp in g.Vertices)
+            Priorit( matrix, g,on_delete);         //Находим степени вершин по матрице смежности
+            uzel[] practice = new uzel[g.VertexCount];
+            //////////////////////////////////////////////////////////////////////////////////////////////
+            //тут должен быть метод для раскраски
+            Hashtable StorageVertex = new Hashtable();   //хештаблица для хранения вершин графа
+            Hashtable StorageColor = new Hashtable();   //хештаблица для хранения цвета(ключ)-узлов(значения)
+            ColorFull(practice,matrix,g,StorageColor, StorageVertex, on_delete);   //вызов метода для раскраски
+            ArrayList priorit = new ArrayList();
+            priorprioritate priors = new priorprioritate();
+            Colors_priorit(StorageVertex,StorageColor,priors,priorit);
+            //реализация составления расписания 
+            string[] schedule = new string[60];
+            for(int i=0;i<6;i++)
             {
-                number = ii;
-                stp.stepeni = 0;
-                stp.number = number;
-                for (int i = ii; i < g.VertexCount;)
-                {                                   //обход матрицы смежности matrix
-                    for (int j = jj; j < g.VertexCount;)
+                for(int j=0;j<60;j+=6)
+                {
+                    priorprioritate p = (priorprioritate)priorit[0];
+                    schedule[i + j] = (string)StorageColor[p.color];
+                    string[] vertex = schedule[i + j].Split(' ');
+                    int sum = 0;bool proverka = false;
+                    foreach (string s in vertex)
                     {
-                        if (matrix[i, j] == 1)      //если находим в строке 1 увеличиваем степень этой вершины соответственно
+                        uzel u = (uzel)StorageVertex[Convert.ToInt32(s)];
+                        if(u.classes>1)
                         {
-                            stp.stepeni++;
-                            jj++;
-                            break;
+                            u.classes--;
+                            sum += u.classes * u.stepeni;
                         }
-                        jj++;
-                        break;
+                        else
+                        {
+                            u.classes--;
+                            on_delete.Add(u.number);
+                            proverka = true;
+                        }
                     }
-                    if (jj == g.VertexCount)                  //выходим из цикла после обхода строки матрицы
+                    if(proverka)
                     {
-                        jj = 0;
-                        ii++;
-                        break;
+                        Priorit(matrix,g,on_delete);
+                        ColorFull(practice, matrix, g, StorageColor, StorageVertex, on_delete);
                     }
                 }
             }
-            uzel[] practice = new uzel[g.VertexCount];
+
+
+
+
+
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var graphViz = new GraphvizAlgorithm<uzel, Edge<uzel>>(g, @".\", QuickGraph.Graphviz.Dot.GraphvizImageType.Png);
+            // render
+            graphViz.FormatVertex += FormatVertex;
+            graphViz.FormatEdge += FormatEdge;
+            string output = graphViz.Generate(new FileDotEngine(), "graph.dot");
+        }
+        
+        private static void ColorFull(uzel[] practice, int[,] matrix, AdjacencyGraph<uzel, Edge<uzel>> g,Hashtable StorageColor, Hashtable StorageVertex, ArrayList on_delete)   //метод для раскраски
+            {
             foreach (uzel col in g.Vertices)
             {
                 col.color = 73;                 //присваиваем всем вершинам цвет 73
                 practice[col.number] = col;
             }
-
-            ////////////////////////////////////////////////////////////////////////////////////////////
-            //Алгоритм по присвоению цветов 
-            int t = 0, x = -1;
             int versh = g.VertexCount;                    //количество вершин в графе (для передачи в метод)
             int[] colors = new int[73];
             for (int i = 0; i < colors.Length; i++)
             {
                 colors[i] = i + 1;
             }
-            //////////////////////////////////////////////////////////////////////////////////////////////
-            //Доработка для практик////
-            //////////////////////////////////////////////////////////////////////////////////////////////
-
-
+            int t = 0, x = -1;
             foreach (uzel col in practice)
             {
-
-                if (col.color == 73)
+                if (col.color == 73 && !on_delete.Contains(col.number)) //есть эта вершина в списке удаленных?
                 {
                     x++;
                     col.color = colors[x];              //Присваиваем новый цвет    
                     int j = col.number;
-                    if (practice[j].practice && practice[j + 1].practice && 
-                        practice[j].group == practice[j + 1].group && 
+                    if (practice[j].practice && practice[j + 1].practice &&
+                        practice[j].group == practice[j + 1].group &&
                         practice[j].subject == practice[j + 1].subject)     //если данный узел практика  и следующий узел практика,
                         practice[j + 1].color = colors[x];                  //а также совпадают предметы, то присваиваем следующему
                 }                                                           //узлу значение цвета текущего           
@@ -220,7 +245,7 @@ namespace Diplom_v._0._36
                 for (int j = 0; j < g.VertexCount; j++)     //Идем по строке матрицы по номеру
                 {
                     //Блок условий проверки на возможность "раскраски" вершины. Под раскраской - подразумевается присваивание номера
-                    if (matrix[t, j] == 0 && t != j && practice[j].color==73)     //Если 0 - можно назначить цвет, что и у вершины
+                    if (matrix[t, j] == 0 && t != j && practice[j].color == 73)     //Если 0 - можно назначить цвет, что и у вершины
                     {
                         bool allow = true;
                         foreach (int p in al)
@@ -232,14 +257,14 @@ namespace Diplom_v._0._36
                         }
                         if (!allow)                     //если нет 0
                             continue;
-                        if(practice[j].practice)        //если элемент j массива practice= практика
+                        if (practice[j].practice)        //если элемент j массива practice= практика
                         {
-                            if(j<practice.Length-1 && practice[j+1].practice && practice[j].group== practice[j+1].group && practice[j].subject == practice[j + 1].subject)     //если предыдущий элемент ArrayList равен текущему то переходим к присвоению цвета
+                            if (j < practice.Length - 1 && practice[j + 1].practice && practice[j].group == practice[j + 1].group && practice[j].subject == practice[j + 1].subject)     //если предыдущий элемент ArrayList равен текущему то переходим к присвоению цвета
                             {
                                 bool access = true;
                                 foreach (int p in al)               //проходим ArrayList
                                 {
-                                    if (matrix[j+1, p] != 0)       //проверка на связи с раскрашенными узлами текщего цвета
+                                    if (matrix[j + 1, p] != 0)       //проверка на связи с раскрашенными узлами текщего цвета
                                     {
                                         access = false;           //можно = false
                                     }
@@ -263,40 +288,93 @@ namespace Diplom_v._0._36
                     }
                 }
             }
-            foreach(uzel col in g.Vertices)
+            foreach (uzel col in g.Vertices)
             {
                 col.color = practice[col.number].color;     //переносим значения цвета узлов из массива в граф
+                StorageVertex.Add(col.number, col);         //заносим в хеш-таблицу номер узла(ключ)-узел(значение)
+                if(StorageColor.Contains(col.color))        //если цвет уже есть в хеш-таблице
+                {
+                    string color = StorageColor[col.color] + " " + col.number;      //заносим в строку значение цвета(ключ) - номер вершины пробел номер вершины
+                    StorageColor[col.color] = color;        // заносим в хеш-таблицу цвет(ключ)-строку с данными через пробел(значение)
+                }
+                else
+                {
+                    StorageColor.Add(col.color, col.number.ToString()); //заносим значение в хеш-таблицу 
+                }
             }
-            
-            //////////////////////////////////////////////////////////////////////////////////////////////
-
-            var graphViz = new GraphvizAlgorithm<uzel, Edge<uzel>>(g, @".\", QuickGraph.Graphviz.Dot.GraphvizImageType.Png);
-            // render
-            graphViz.FormatVertex += FormatVertex;
-            graphViz.FormatEdge += FormatEdge;
-            string output = graphViz.Generate(new FileDotEngine(), "graph.dot");
         }
 
-        //Возвращает ноль, если все цвета уже присвоены
-        //static bool NoFullColor(int versh, AdjacencyGraph<uzel, Edge<uzel>> g)
-        //{
-        //    int flag = 0;
-        //    foreach (uzel col in g.Vertices)    //Цикл проверяет - все ли цвета посещены
-        //    {
-        //        if (col.color <= versh)
-        //            flag++;
-        //    }
-        //    if (flag == versh)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
+        private static void Priorit(int[,] matrix,AdjacencyGraph<uzel, Edge<uzel>> g, ArrayList on_delete)
+        {
+            int number = 0;
+            int ii = 0, jj = 0;                 //переменные для подсчета, чтобы использовать foreach
+            foreach (uzel stp in g.Vertices)
+            {
+                number = ii;
+                stp.stepeni = 0;
+                stp.number = number;
+                for (int i = ii; i < g.VertexCount;)
+                {                                   //обход матрицы смежности matrix
+                    for (int j = jj; j < g.VertexCount;)
+                    {
+                        if (matrix[i, j] == 1 && !on_delete.Contains(stp.number))      //если находим в строке 1 увеличиваем степень этой вершины соответственно
+                        {
+                            stp.stepeni++;
+                            jj++;
+                            break;
+                        }
+                        jj++;
+                        break;
+                    }
+                    if (jj == g.VertexCount)                  //выходим из цикла после обхода строки матрицы
+                    {
+                        jj = 0;
+                        ii++;
+                        break;
+                    }
+                }
+            }
+        }
 
-        //}
-        
+        private static void Colors_priorit(Hashtable StorageVertex, Hashtable StorageColor, priorprioritate priors, ArrayList priorit)
+        {
+            for (int i = 0; i < StorageColor.Count; i++)
+            {
+                int sum = 0;
+                string vertex = (string)StorageColor[i + 1];
+                string[] sp_ver = vertex.Split(' ');
+                foreach (string a in sp_ver)
+                {
+                    uzel u = (uzel)StorageVertex[Convert.ToInt32(a)];
+                    sum += u.stepeni * u.classes;
+                    priors.color = i + 1;
+                    priors.prior = sum;
+
+                }
+                priorit.Add(priors);    //внесение данных структуры в ArrayList
+            }
+            BubbleSort(priorit);    //вызов метода для сортировки ArrayLista priorit
+        }
+
+        private static void BubbleSort(ArrayList priorit)   //сортировка ArrayList priorit
+        {
+            for (int i = 0; i < priorit.Count; i++)
+            {
+                for (int j = 0; j < priorit.Count - i - 1; j++)
+                {
+                    priorprioritate left = (priorprioritate)priorit[j];
+                    priorprioritate right = (priorprioritate)priorit[j+1];
+                    int select = left.prior; int select2 = right.prior;
+                    if (select < select2)
+                    {
+                        var temp = priorit[j];
+                        priorit[j] = priorit[j + 1];
+                        priorit[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
         private static void FormatVertex(object sender, FormatVertexEventArgs<uzel> e)
         {
             string para;
@@ -304,7 +382,7 @@ namespace Diplom_v._0._36
                 para = "Лекция";
             else
                 para = "Практика";
-            e.VertexFormatter.Label = e.Vertex.group + "\n" + e.Vertex.subject + "\n" + e.Vertex.teacher + "\n" + para + "\n\n" + e.Vertex.color.ToString();
+            e.VertexFormatter.Label = e.Vertex.group + "\n" + e.Vertex.subject + "\n" + e.Vertex.teacher + "\n" + para + "\n\n" +"Количество пар"+ e.Vertex.classes + "\n" + e.Vertex.color.ToString();
             e.VertexFormatter.Shape = GraphvizVertexShape.Circle;
             //e.VertexFormatter.BottomLabel = e.Vertex.subject;
            
@@ -346,7 +424,6 @@ namespace Diplom_v._0._36
             // TODO: данная строка кода позволяет загрузить данные в таблицу "diplom2DataSet.Load". При необходимости она может быть перемещена или удалена.
             this.loadTableAdapter1.Fill(this.diplom2DataSet1.Load);
         }
-
         Load_form Ld = null;
         private void button1_Click(object sender, EventArgs e) //открытие формы "Нагрузка"
         {
@@ -364,7 +441,6 @@ namespace Diplom_v._0._36
                 Ld.Focus();
             }
         }
-       
         private bool CheckOpened(string name)   //проверка на открытие или закрытие формы
         {
             FormCollection fc = Application.OpenForms;

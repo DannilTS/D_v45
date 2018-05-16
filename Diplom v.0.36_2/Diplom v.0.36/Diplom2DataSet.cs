@@ -4,6 +4,9 @@
 
     partial class Diplom2DataSet
     {
+        partial class LoadDataTable
+        {
+        }
     }
 }
 
