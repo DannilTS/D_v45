@@ -155,20 +155,21 @@ namespace Diplom_v._0._36
                 }
             }
             Priorit( matrix, g,on_delete);         //Находим степени вершин по матрице смежности
-            uzel[] practice = new uzel[g.VertexCount];
-            //////////////////////////////////////////////////////////////////////////////////////////////
+                uzel[] practice = new uzel[g.VertexCount];
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //тут должен быть метод для раскраски
             Hashtable StorageVertex = new Hashtable();   //хештаблица для хранения вершин графа
             Hashtable StorageColor = new Hashtable();   //хештаблица для хранения цвета(ключ)-узлов(значения)
-            ColorFull(practice,matrix,g,StorageColor, StorageVertex, on_delete);   //вызов метода для раскраски
-            ArrayList priorit = new ArrayList();
-            priorprioritate priors = new priorprioritate();
-            Colors_priorit(StorageVertex,StorageColor,priors,priorit);
+            ColorFull(practice,matrix,g,on_delete);   //вызов метода для раскраски
+            HashFull(StorageVertex, StorageColor,g);
+            ArrayList priorit = new ArrayList();    //лист, хранящий приоритеты цветов
+            priorprioritate priors = new priorprioritate(); //структура: цвет-приоритет
+                Colors_priorit(StorageVertex,StorageColor,priors,priorit,on_delete);  //задаем приоритеты цветам
             //реализация составления расписания 
             string[] schedule = new string[60];
-            for(int i=0;i<6;i++)
+            for(int i=0;i<6 && priorit.Count > 0; i++)
             {
-                for(int j=0;j<60;j+=6)
+                for(int j=0;j<60 && priorit.Count > 0; j+=6)
                 {
                     priorprioritate p = (priorprioritate)priorit[0];
                     schedule[i + j] = (string)StorageColor[p.color];
@@ -189,28 +190,154 @@ namespace Diplom_v._0._36
                             proverka = true;
                         }
                     }
-                    if(proverka)
+                    if (proverka)
                     {
-                        Priorit(matrix,g,on_delete);
-                        ColorFull(practice, matrix, g, StorageColor, StorageVertex, on_delete);
+                        StorageColor.Clear();                       //очистка хеш-таблицы цветов
+                        priorit.Clear();                            //очистка листа с цветами   
+                        Priorit(matrix, g, on_delete);              //расчет приоритетов
+                        ColorFull(practice, matrix, g, on_delete);  //раскраска графа
+                        foreach(uzel u in g.Vertices)
+                        {
+                            uzel temp = (uzel)StorageVertex[u.number];
+                            temp.stepeni = u.stepeni;
+                            temp.color = u.color; //обновляем связи и цвет в хеше вершин
+                            StorageVertex[u.number] = temp;
+                        }
+                        HashFull(StorageVertex, StorageColor, g);   //создание хеша с цветами
+                        Colors_priorit(StorageVertex, StorageColor, priors, priorit, on_delete);    //расчет приоритетов для цветов
                     }
+                    else
+                    {
+                        p.prior = sum;
+                        priorit.Remove(priorit[0]);
+                        priorit.Add(p);
+                        BubbleSort(priorit);
+                    }
+
                 }
             }
 
 
 
-
-
-
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            var graphViz = new GraphvizAlgorithm<uzel, Edge<uzel>>(g, @".\", QuickGraph.Graphviz.Dot.GraphvizImageType.Png);
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //var graphViz = new GraphvizAlgorithm<uzel, Edge<uzel>>(g, @".\", QuickGraph.Graphviz.Dot.GraphvizImageType.Png);
             // render
-            graphViz.FormatVertex += FormatVertex;
-            graphViz.FormatEdge += FormatEdge;
-            string output = graphViz.Generate(new FileDotEngine(), "graph.dot");
+            //graphViz.FormatVertex += FormatVertex;
+            //graphViz.FormatEdge += FormatEdge;
+            //string output = graphViz.Generate(new FileDotEngine(), "graph.dot");
+
+            //вывод в таблицу////////////////////////////////////////
+            ArrayList groups = new ArrayList();
+            foreach (uzel grp in g.Vertices)
+            {
+                if (!groups.Contains(grp.group) && grp.practice)
+                {
+                    groups.Add(grp.group);
+                }
+            }
+            DataGridViewTextBoxColumn[] column = new DataGridViewTextBoxColumn[groups.Count+2];
+            dataGridView1.Columns.Add("Header"+0,"День недели");
+            dataGridView1.Columns.Add("Header" + 1, "Время");
+            for (int i=2;i<groups.Count+2;i++)
+            {
+                column[i] = new DataGridViewTextBoxColumn();
+                column[i].HeaderText = groups[i-2].ToString();
+                column[i].Name = "Header" + i;
+                dataGridView1.Columns.Add(column[i]);
+            }
+            Hashtable Groups = new Hashtable();
+            for(int i=2;i<groups.Count+2;i++)
+            {
+                Groups.Add(groups[i-2], i);
+            }
+            string[] day = new string[] {"Понедельник","Вторник","Среда","Четверг","Пятница"};
+            string[] time = new string[] {"08:00-09:30","09:45-11:15","11:30-13:00","13:50-15-20","15:35-17:05","17:20-18:50"};
+
+            for (int i = 0; i < 2; i ++)
+            {
+                for (int j = 0; j < day.Length; j++)
+                {
+                    for (int qq = 0; qq < time.Length; qq++)
+                    {
+                        int q = i * 30 + j * 6 + qq;
+                        dataGridView1.Rows.Add();                           //добавляем пустую строку
+                        dataGridView1.Rows[q].Cells[1].Value = time[qq];    //заполняем столбец время
+                        dataGridView1.Rows[q].Cells[0].Value = day[j];      //заполняем столбец день
+                        string lesson = schedule[q];
+                        if(lesson!=null)
+                        {
+                            string[] sp_lesson = lesson.Split(' ');
+                            foreach (string l in sp_lesson)
+                            {
+                                uzel u = (uzel)StorageVertex[Convert.ToInt32(l)];
+                                int proverka = u.group.IndexOf(',');
+                                if (proverka > 0)
+                                {
+                                    string gr = u.group;
+                                    string[] sp_gr = gr.Split(',');
+                                    foreach (string group in sp_gr)
+                                    {
+                                        int cel = (int)Groups[group];
+                                        if (dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value == null)
+                                        {
+                                            if(u.leacture)
+                                            {
+                                                dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value = u.subject + " " + u.teacher + "  ";
+                                                dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Style.Font = new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Bold);
+                                            }
+                                            else
+                                            {
+                                                dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value = u.subject + " " + u.teacher + "  ";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if(u.leacture)
+                                            {
+                                                dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value += u.subject + " " + u.teacher + "  ";
+                                                dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Style.Font = new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Bold);
+                                            }
+                                            else
+                                            {
+                                                dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value += u.subject + " " + u.teacher + "  ";
+                                            }                  
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    var cel = Groups[u.group];
+                                    if (dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value==null)
+                                    {
+                                        if(u.leacture)
+                                        {
+                                            dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value =  u.subject + " " + u.teacher + "  ";
+                                            dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Style.Font = new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Bold);
+                                        }
+                                        else
+                                        {
+                                            dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value = u.subject + " " + u.teacher + "  ";
+                                        }                                       
+                                    }
+                                    else
+                                    {
+                                        dataGridView1.Rows[q].Cells[Convert.ToInt32(cel)].Value += u.subject + " " + u.teacher+ "  ";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }     
+                    }
+                }
+            }
+
+
         }
-        
-        private static void ColorFull(uzel[] practice, int[,] matrix, AdjacencyGraph<uzel, Edge<uzel>> g,Hashtable StorageColor, Hashtable StorageVertex, ArrayList on_delete)   //метод для раскраски
+
+        private static void ColorFull(uzel[] practice, int[,] matrix, AdjacencyGraph<uzel, Edge<uzel>> g, ArrayList on_delete)   //метод для раскраски
             {
             foreach (uzel col in g.Vertices)
             {
@@ -232,8 +359,8 @@ namespace Diplom_v._0._36
                     col.color = colors[x];              //Присваиваем новый цвет    
                     int j = col.number;
                     if (practice[j].practice && practice[j + 1].practice &&
-                        practice[j].group == practice[j + 1].group &&
-                        practice[j].subject == practice[j + 1].subject)     //если данный узел практика  и следующий узел практика,
+                        practice[j].group == practice[j + 1].group &&                                                   //и не в ондилит
+                        practice[j].subject == practice[j + 1].subject && !on_delete.Contains(practice[j+1].number))     //если данный узел практика  и следующий узел практика,
                         practice[j + 1].color = colors[x];                  //а также совпадают предметы, то присваиваем следующему
                 }                                                           //узлу значение цвета текущего           
                 else
@@ -245,7 +372,7 @@ namespace Diplom_v._0._36
                 for (int j = 0; j < g.VertexCount; j++)     //Идем по строке матрицы по номеру
                 {
                     //Блок условий проверки на возможность "раскраски" вершины. Под раскраской - подразумевается присваивание номера
-                    if (matrix[t, j] == 0 && t != j && practice[j].color == 73)     //Если 0 - можно назначить цвет, что и у вершины
+                    if (matrix[t, j] == 0 && t != j && practice[j].color == 73 && !on_delete.Contains(practice[j].number))     //Если 0 - можно назначить цвет, что и у вершины
                     {
                         bool allow = true;
                         foreach (int p in al)
@@ -291,8 +418,16 @@ namespace Diplom_v._0._36
             foreach (uzel col in g.Vertices)
             {
                 col.color = practice[col.number].color;     //переносим значения цвета узлов из массива в граф
-                StorageVertex.Add(col.number, col);         //заносим в хеш-таблицу номер узла(ключ)-узел(значение)
-                if(StorageColor.Contains(col.color))        //если цвет уже есть в хеш-таблице
+            }
+        }
+
+        private static void HashFull(Hashtable StorageVertex, Hashtable StorageColor, AdjacencyGraph<uzel, Edge<uzel>> g)
+        {
+            foreach (uzel col in g.Vertices)
+            {
+                if(!StorageVertex.ContainsKey(col.number))
+                    StorageVertex.Add(col.number, col);         //заносим в хеш-таблицу номер узла(ключ)-узел(значение)
+                if (StorageColor.Contains(col.color))        //если цвет уже есть в хеш-таблице
                 {
                     string color = StorageColor[col.color] + " " + col.number;      //заносим в строку значение цвета(ключ) - номер вершины пробел номер вершины
                     StorageColor[col.color] = color;        // заносим в хеш-таблицу цвет(ключ)-строку с данными через пробел(значение)
@@ -302,9 +437,9 @@ namespace Diplom_v._0._36
                     StorageColor.Add(col.color, col.number.ToString()); //заносим значение в хеш-таблицу 
                 }
             }
-        }
+        }   //заполнение хеш-таблиц
 
-        private static void Priorit(int[,] matrix,AdjacencyGraph<uzel, Edge<uzel>> g, ArrayList on_delete)
+        private static void Priorit(int[,] matrix,AdjacencyGraph<uzel, Edge<uzel>> g, ArrayList on_delete)  //метод для просчета приоритетов
         {
             int number = 0;
             int ii = 0, jj = 0;                 //переменные для подсчета, чтобы использовать foreach
@@ -334,21 +469,29 @@ namespace Diplom_v._0._36
                     }
                 }
             }
-        }
+        }   //метод для внесения приоритетов у пар
 
-        private static void Colors_priorit(Hashtable StorageVertex, Hashtable StorageColor, priorprioritate priors, ArrayList priorit)
+        private static void Colors_priorit(Hashtable StorageVertex, Hashtable StorageColor, priorprioritate priors, ArrayList priorit, ArrayList on_delete)  //метод для внесения приоритетов у цветов
         {
-            for (int i = 0; i < StorageColor.Count; i++)
+            int hollow = StorageColor.ContainsKey(73) ? 1 : 0; //проверяем на наличие пустого 73 цвета
+            for (int i = 0; i < StorageColor.Count - hollow; i++)
             {
                 int sum = 0;
-                string vertex = (string)StorageColor[i + 1];
+                string vertex = (string)StorageColor[i+1];
                 string[] sp_ver = vertex.Split(' ');
                 foreach (string a in sp_ver)
                 {
                     uzel u = (uzel)StorageVertex[Convert.ToInt32(a)];
-                    sum += u.stepeni * u.classes;
-                    priors.color = i + 1;
-                    priors.prior = sum;
+                    if (!on_delete.Contains(u.number))
+                    {
+                        sum += u.stepeni * u.classes;
+                        priors.color = i + 1;
+                        priors.prior = sum;
+                    }
+                    else
+                    {
+                        continue;
+                    }
 
                 }
                 priorit.Add(priors);    //внесение данных структуры в ArrayList
