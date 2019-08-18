@@ -32,5 +32,15 @@ namespace Diplom_v._0._36.Properties {
                 return ((string)(this["Diplom2ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\bin\\Diplom2.mdb")]
+        public string Diplom2ConnectionString1 {
+            get {
+                return ((string)(this["Diplom2ConnectionString1"]));
+            }
+        }
     }
 }

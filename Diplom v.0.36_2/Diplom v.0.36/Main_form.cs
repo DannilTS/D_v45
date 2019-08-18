@@ -391,7 +391,7 @@ namespace Diplom_v._0._36
                                 bool access = true;
                                 foreach (int p in al)               //проходим ArrayList
                                 {
-                                    if (matrix[j + 1, p] != 0)       //проверка на связи с раскрашенными узлами текщего цвета
+                                    if (matrix[j + 1, p] != 0)       //проверка на связи с раскрашенными узлами текущего цвета
                                     {
                                         access = false;           //можно = false
                                     }
